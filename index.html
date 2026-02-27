@@ -305,15 +305,12 @@
       if (!name || !email || !phone || !pw) {
         errEl.textContent = 'All fields are required.'; errEl.classList.add('show'); return;
       }
-      if (SPA.accounts.find(a => a.email === email)) {
-        errEl.textContent = 'Email already registered.'; errEl.classList.add('show'); return;
+      const result = SPA.registerAccount({ name, email, password: pw, phone });
+      if (result.error) {
+        errEl.textContent = result.error; errEl.classList.add('show'); return;
       }
-
-      const newId = 'cli' + String(SPA.accounts.length + 1).padStart(3, '0');
-      const user = { id: newId, role: 'client', name, email, password: pw, phone };
-      SPA.accounts.push(user);
-      SPA.clients.push({ id: newId, name, phone, email, visits: 0, totalSpent: 0, joinDate: new Date().toISOString().split('T')[0], lastVisit: '' });
-      SPA.persistSession(user);
+      SPA.addClient({ id: result.id, name, phone, email });
+      SPA.persistSession(result);
       window.location.href = 'client-portal.html';
     }
 
