@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Shortcut's Skin Care Spa</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <!-- MOBILE SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C12 2 4 7 4 14C4 18.418 7.582 22 12 22C16.418 22 20 18.418 20 14C20 7 12 2 12 2Z"
+            fill="rgba(143,196,154,0.2)" stroke="#8fc49a" stroke-width="1.2" />
+          <line x1="12" y1="5" x2="12" y2="20" stroke="#8fc49a" stroke-width="1" stroke-linecap="round" />
+          <path d="M12 8C12 8 8 11 8 14" stroke="#8fc49a" stroke-width="1" stroke-linecap="round" />
+          <path d="M12 8C12 8 16 11 16 14" stroke="#8fc49a" stroke-width="1" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h3>Shortcut's Spa</h3>
+        <span>Admin Panel</span>
+      </div>
+    </div>
+
+    <div class="nav-wrap">
+      <div class="nav-section-label">Overview</div>
+      <button class="nav-btn active" onclick="nav('dashboard',this)">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        Dashboard
+      </button>
+      <button class="nav-btn" onclick="nav('appointments',this)">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Appointments
+      </button>
+      <button class="nav-btn" onclick="nav('book',this)">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+        New Appointment
+      </button>
+
+      <div class="nav-section-label">Management</div>
+      <button class="nav-btn" onclick="nav('clients',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+        </svg>
+        Clients
+      </button>
+      <button class="nav-btn" onclick="nav('income',this)">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="1" x2="12" y2="23" />
+          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+        </svg>
+        Income Tracker
+      </button>
+      <button class="nav-btn" onclick="nav('sms',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+        </svg>
+        SMS Notifications
+      </button>
+
+      <div class="nav-section-label">Settings</div>
+      <button class="nav-btn" onclick="nav('services',this)">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+        </svg>
+        Services
+      </button>
+      <button class="nav-btn" onclick="nav('audit',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 11l3 3L22 4" />
+          <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+        </svg>
+        Audit Log
+      </button>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="user-av" id="adminAv">A</div>
+        <div style="flex:1;min-width:0">
+          <h5 id="adminName">Admin</h5>
+          <p>Administrator</p>
+        </div>
+        <button class="logout-btn" onclick="logout()" title="Log out">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-menu-btn" id="menuBtn" onclick="openSidebar()">
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <div class="page-heading" id="pageHeading">Dashboard</div>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" onclick="nav('book', document.querySelectorAll('.nav-btn')[2])"
+          title="New appointment">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+        </button>
+        <button class="icon-btn" onclick="nav('sms', document.querySelectorAll('.nav-btn')[5])">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>
+          <span class="badge-dot"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ══ DASHBOARD ══ -->
+      <div class="view active" id="view-dashboard">
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon-wrap"><svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg></div>
+            <div class="stat-val" id="s-total">0</div>
+            <div class="stat-lbl">Total Appointments</div>
+            <div class="stat-badge">All records</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap"><svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg></div>
+            <div class="stat-val" id="s-confirmed">0</div>
+            <div class="stat-lbl">Today's Schedule</div>
+            <div class="stat-badge">Feb 27</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap"><svg viewBox="0 0 24 24">
+                <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+              </svg></div>
+            <div class="stat-val" id="s-clients">0</div>
+            <div class="stat-lbl">Registered Clients</div>
+            <div class="stat-badge">Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-wrap"><svg viewBox="0 0 24 24">
+                <line x1="12" y1="1" x2="12" y2="23" />
+                <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+              </svg></div>
+            <div class="stat-val" id="s-income">₱0</div>
+            <div class="stat-lbl">Monthly Revenue</div>
+            <div class="stat-badge" style="color:var(--gold)">February</div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Today's Schedule</div>
+              <button class="btn btn-outline btn-sm"
+                onclick="nav('appointments', document.querySelectorAll('.nav-btn')[1])">View All</button>
+            </div>
+            <div id="todayAppts"></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title" id="calLabel">February 2026</div>
+              <div style="display:flex;gap:4px">
+                <button class="btn btn-ghost btn-xs" onclick="prevMonth()">‹</button>
+                <button class="btn btn-ghost btn-xs" onclick="nextMonth()">›</button>
+              </div>
+            </div>
+            <div class="cal-grid" id="calendar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ APPOINTMENTS ══ -->
+      <div class="view" id="view-appointments">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">All Appointments</div>
+            <button class="btn btn-primary btn-sm" onclick="nav('book', document.querySelectorAll('.nav-btn')[2])">
+              <svg viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              New
+            </button>
+          </div>
+          <div class="search-row">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input placeholder="Search client, service…" id="apptSearch" oninput="renderApptTable()">
+          </div>
+          <div class="pill-bar">
+            <button class="pill active" onclick="setApptFilter('all',this)">All</button>
+            <button class="pill" onclick="setApptFilter('pending',this)">Pending</button>
+            <button class="pill" onclick="setApptFilter('confirmed',this)">Confirmed</button>
+            <button class="pill" onclick="setApptFilter('completed',this)">Completed</button>
+            <button class="pill" onclick="setApptFilter('cancelled',this)">Cancelled</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Service</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Therapist</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="apptTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ BOOK APPOINTMENT ══ -->
+      <div class="view" id="view-book">
+        <div class="card" style="max-width:640px;margin:0 auto">
+          <div class="card-header" style="margin-bottom:24px">
+            <div class="card-title" style="font-size:20px">Book Appointment</div>
+          </div>
+
+          <!-- Quick client lookup -->
+          <div
+            style="background:rgba(200,222,206,.12);border:1px solid rgba(143,196,154,.2);border-radius:var(--r-lg);padding:18px;margin-bottom:24px">
+            <div
+              style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:12px">
+              Existing Client Lookup</div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <div class="search-row" style="flex:1;margin-bottom:0">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input placeholder="Search by name or phone…" id="clientLookup" oninput="renderClientLookup()"
+                  autocomplete="off">
+              </div>
+            </div>
+            <div id="clientLookupResults" style="margin-top:8px"></div>
+          </div>
+
+          <div class="form-grid">
+            <div class="fg"><label>Client Name *</label><input type="text" id="bName" placeholder="Full name"></div>
+            <div class="fg"><label>Phone *</label><input type="text" id="bPhone" placeholder="09XX XXX XXXX"></div>
+            <div class="fg"><label>Service *</label>
+              <select id="bService">
+                <option value="">Select service</option>
+                <option>Facial Care</option>
+                <option>Underarm Care</option>
+                <option>Eyebrow Shaping</option>
+                <option>Eyelash Service</option>
+                <option>Wax Service</option>
+                <option>Glutathione Shot</option>
+                <option>Glutathione Drip</option>
+                <option>Manicure</option>
+                <option>Pedicure</option>
+                <option>Mani & Pedi</option>
+              </select>
+            </div>
+            <div class="fg"><label>Therapist</label>
+              <select id="bTherapist">
+                <option>Any Available</option>
+                <option>Maria Santos</option>
+                <option>Ana Reyes</option>
+                <option>Joy Cruz</option>
+              </select>
+            </div>
+            <div class="fg"><label>Date *</label><input type="date" id="bDate"></div>
+            <div class="fg"><label>Time *</label>
+              <select id="bTime">
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+              </select>
+            </div>
+            <div class="fg full"><label>Notes</label><textarea id="bNotes"
+                placeholder="Special requests or concerns…"></textarea></div>
+            <div class="fg full" style="flex-direction:row;justify-content:flex-end;gap:10px">
+              <button class="btn btn-outline" onclick="clearBook()">Clear</button>
+              <button class="btn btn-primary" onclick="submitBook()">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                Book Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ CLIENTS ══ -->
+      <div class="view" id="view-clients">
+        <div
+          style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:12px">
+          <div style="font-family:'Playfair Display',serif;font-size:22px;color:var(--forest)">Client Management</div>
+          <button class="btn btn-primary btn-sm" onclick="openModal('clientModal')">
+            <svg viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Add Client
+          </button>
+        </div>
+        <div class="search-row">
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input placeholder="Search clients by name or phone…" id="clientSearch" oninput="renderClients()">
+        </div>
+        <div class="clients-grid" id="clientsGrid"></div>
+      </div>
+
+      <!-- ══ INCOME ══ -->
+      <div class="view" id="view-income">
+        <div class="summary-grid">
+          <div class="sum-box">
+            <div class="sum-val" id="inc-today">₱0</div>
+            <div class="sum-lbl">Today's Revenue</div>
+          </div>
+          <div class="sum-box">
+            <div class="sum-val" id="inc-week">₱0</div>
+            <div class="sum-lbl">This Week</div>
+          </div>
+          <div class="sum-box">
+            <div class="sum-val" id="inc-month">₱0</div>
+            <div class="sum-lbl">This Month</div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:18px">
+          <div class="card-header">
+            <div class="card-title">Daily Revenue — February 2026</div>
+            <div style="font-size:12px;color:var(--muted)">Hover bars for details</div>
+          </div>
+          <div class="chart-row" id="incomeChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Sales Records</div>
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">
+              <svg viewBox="0 0 24 24">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Export CSV
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Client</th>
+                  <th>Service</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="incomeTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SMS ══ -->
+      <div class="view" id="view-sms">
+        <div class="card" style="max-width:700px">
+          <div class="card-header">
+            <div>
+              <div class="card-title">SMS Notification Center</div>
+              <p style="font-size:13px;color:var(--muted);margin-top:4px">Clients receive 24-hour advance reminders with
+                confirm/cancel options.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="sendAllSMS()">
+              <svg viewBox="0 0 24 24">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Send All
+            </button>
+          </div>
+          <div id="smsList"></div>
+        </div>
+      </div>
+
+      <!-- ══ SERVICES ══ -->
+      <div class="view" id="view-services">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Service Menu</div>
+            <button class="btn btn-primary btn-sm" onclick="openModal('svcModal')">
+              <svg viewBox="0 0 24 24">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add Service
+            </button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Category</th>
+                  <th>Duration</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="svcTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ AUDIT LOG ══ -->
+      <div class="view" id="view-audit">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Activity Audit Log</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn-outline btn-sm" onclick="renderAudit()">↺ Refresh</button>
+              <button class="btn btn-danger btn-sm" onclick="if(confirm('Reset ALL data to defaults?'))SPA.resetDB()">⚠
+                Reset DB</button>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px">All operations are persisted to
+            <strong>localStorage</strong> and tracked here.</p>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+            <div style="background:var(--cream);border-radius:var(--r-md);padding:14px;text-align:center">
+              <div style="font-size:22px;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif"
+                id="db-appts">—</div>
+              <div
+                style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px">
+                Appointments</div>
+            </div>
+            <div style="background:var(--cream);border-radius:var(--r-md);padding:14px;text-align:center">
+              <div style="font-size:22px;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif"
+                id="db-clients">—</div>
+              <div
+                style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px">
+                Clients</div>
+            </div>
+            <div style="background:var(--cream);border-radius:var(--r-md);padding:14px;text-align:center">
+              <div style="font-size:22px;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif"
+                id="db-services">—</div>
+              <div
+                style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px">
+                Services</div>
+            </div>
+            <div style="background:var(--cream);border-radius:var(--r-md);padding:14px;text-align:center">
+              <div style="font-size:22px;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif"
+                id="db-storage">—</div>
+              <div
+                style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:4px">
+                Storage Used</div>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Action</th>
+                  <th>Entity</th>
+                  <th>Detail</th>
+                  <th>User</th>
+                </tr>
+              </thead>
+              <tbody id="auditTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══ MODALS ═══ -->
+
+  <!-- Book Modal (quick) -->
+  <div class="overlay" id="bookModal">
+    <div class="modal">
+      <div class="modal-title">Quick Book Appointment</div>
+      <div class="form-grid">
+        <div class="fg"><label>Client Name *</label><input type="text" id="mbName" placeholder="Full name"></div>
+        <div class="fg"><label>Phone *</label><input type="text" id="mbPhone" placeholder="09XX XXX XXXX"></div>
+        <div class="fg"><label>Service *</label>
+          <select id="mbService">
+            <option value="">Select service</option>
+            <option>Facial Care</option>
+            <option>Underarm Care</option>
+            <option>Eyebrow Shaping</option>
+            <option>Eyelash Service</option>
+            <option>Wax Service</option>
+            <option>Glutathione Shot</option>
+            <option>Glutathione Drip</option>
+            <option>Manicure</option>
+            <option>Pedicure</option>
+            <option>Mani & Pedi</option>
+          </select>
+        </div>
+        <div class="fg"><label>Date *</label><input type="date" id="mbDate"></div>
+        <div class="fg"><label>Time</label>
+          <select id="mbTime">
+            <option value="08:00">8:00 AM</option>
+            <option value="09:00">9:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">1:00 PM</option>
+            <option value="14:00">2:00 PM</option>
+            <option value="15:00">3:00 PM</option>
+            <option value="16:00">4:00 PM</option>
+            <option value="17:00">5:00 PM</option>
+          </select>
+        </div>
+        <div class="fg"><label>Therapist</label>
+          <select id="mbTherapist">
+            <option>Any Available</option>
+            <option>Maria Santos</option>
+            <option>Ana Reyes</option>
+            <option>Joy Cruz</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('bookModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitBookModal()">Book</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client Modal -->
+  <div class="overlay" id="clientModal">
+    <div class="modal">
+      <div class="modal-title">Add New Client</div>
+      <div class="form-grid">
+        <div class="fg"><label>Full Name *</label><input type="text" id="cName" placeholder="Client full name"></div>
+        <div class="fg"><label>Phone *</label><input type="text" id="cPhone" placeholder="09XX XXX XXXX"></div>
+        <div class="fg full"><label>Email</label><input type="email" id="cEmail" placeholder="email@example.com"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('clientModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitAddClient()">Add Client</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Modal -->
+  <div class="overlay" id="svcModal">
+    <div class="modal">
+      <div class="modal-title">Add New Service</div>
+      <div class="form-grid">
+        <div class="fg"><label>Service Name *</label><input type="text" id="sName" placeholder="Service name"></div>
+        <div class="fg"><label>Category</label>
+          <select id="sCat">
+            <option>Facial</option>
+            <option>Body</option>
+            <option>Nails</option>
+            <option>Lash & Brow</option>
+            <option>Wellness</option>
+          </select>
+        </div>
+        <div class="fg"><label>Duration (mins)</label><input type="number" id="sDur" value="60" min="5"></div>
+        <div class="fg"><label>Price (₱)</label><input type="number" id="sPrice" placeholder="500" min="0"></div>
+        <div class="fg full"><label>Description</label><textarea id="sDesc"
+            placeholder="Brief service description…"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal('svcModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitService()">Add Service</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared.js"></script>
+  <script src="design.js"></script>
+  <script>
+    // ─── AUTH ───
+    const user = SPA.getSession();
+    if (!user || (user.role !== 'admin' && user.role !== 'employee')) window.location.href = 'index.html';
+
+    document.getElementById('adminName').textContent = user.name;
+    document.getElementById('adminAv').textContent = user.name[0].toUpperCase();
+
+    function logout() { SPA.clearSession(); window.location.href = 'index.html'; }
+
+    // ─── MOBILE SIDEBAR ───
+    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('active'); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
+
+    // ─── NAVIGATION ───
+    const pageTitles = {
+      dashboard: 'Dashboard', appointments: 'Appointments', book: 'New Appointment',
+      clients: 'Clients', income: 'Income Tracker', sms: 'SMS Notifications', services: 'Services', audit: 'Audit Log'
+    };
+
+    function nav(id, el) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + id).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+      document.getElementById('pageHeading').textContent = pageTitles[id] || id;
+      closeSidebar();
+
+      const renders = {
+        dashboard: renderDashboard, appointments: renderApptTable,
+        clients: renderClients, income: renderIncome,
+        sms: renderSMS, services: renderServices, audit: renderAudit
+      };
+      if (renders[id]) renders[id]();
+    }
+
+    // ─── MODAL ───
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    document.querySelectorAll('.overlay').forEach(o => {
+      o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); });
+    });
+
+    // ─── DASHBOARD ───
+    let calYear = 2026, calMonth = 1;
+
+    function renderDashboard() {
+      const today = '2026-02-27';
+      Design.animateCounter(document.getElementById('s-total'), SPA.appointments.length);
+      Design.animateCounter(document.getElementById('s-confirmed'), SPA.appointments.filter(a => a.date === today).length);
+      Design.animateCounter(document.getElementById('s-clients'), SPA.clients.length);
+
+      // Compute revenue live from appointments
+      const monthRev = SPA.getMonthlyRevenue(2026, 2);
+      document.getElementById('s-income').textContent = SPA.formatCurrency(monthRev || 38200);
+
+      const todayAppts = SPA.appointments.filter(a => a.date === today);
+      const listEl = document.getElementById('todayAppts');
+
+      if (!todayAppts.length) {
+        listEl.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <h4>No appointments today</h4>
+      <p>Schedule looks clear!</p>
+    </div>`;
+      } else {
+        listEl.innerHTML = todayAppts.map(a => `
+      <div class="appt-row">
+        <div class="appt-av">${a.clientName[0]}</div>
+        <div class="appt-info" style="flex:1">
+          <h5>${a.clientName}</h5>
+          <p>${a.service} · ${a.therapist}</p>
+        </div>
+        <div class="appt-time-badge">${fmtTime(a.time)}</div>
+        <span class="chip chip-${a.status}" style="margin-left:8px">${cap(a.status)}</span>
+      </div>
+    `).join('');
+      }
+
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      document.getElementById('calLabel').textContent = MONTHS[calMonth] + ' ' + calYear;
+      const first = new Date(calYear, calMonth, 1).getDay();
+      const days = new Date(calYear, calMonth + 1, 0).getDate();
+      let html = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(d => `<div class="cal-head">${d}</div>`).join('');
+      for (let i = 0; i < first; i++) html += `<div class="cal-cell other"></div>`;
+      for (let d = 1; d <= days; d++) {
+        const ds = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const has = SPA.appointments.some(a => a.date === ds);
+        const tod = ds === '2026-02-27';
+        html += `<div class="cal-cell ${tod ? 'today' : ''} ${has && !tod ? 'has-appt' : ''}">${d}${has ? '<div class="cal-dot"></div>' : ''}</div>`;
+      }
+      document.getElementById('calendar').innerHTML = html;
+    }
+
+    function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+    function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+
+    // ─── APPOINTMENTS TABLE ───
+    let apptFilter = 'all';
+
+    function setApptFilter(f, el) {
+      apptFilter = f;
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      renderApptTable();
+    }
+
+    function renderApptTable() {
+      const q = (document.getElementById('apptSearch')?.value || '').toLowerCase();
+      let data = SPA.appointments;
+      if (apptFilter !== 'all') data = data.filter(a => a.status === apptFilter);
+      if (q) data = data.filter(a => a.clientName.toLowerCase().includes(q) || a.service.toLowerCase().includes(q) || a.phone.includes(q));
+      const tb = document.getElementById('apptTbody');
+
+      if (!data.length) {
+        tb.innerHTML = `<tr><td colspan="7"><div class="empty-state" style="padding:32px 20px">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <h4>No appointments found</h4>
+      <p>Try changing your filter or search term.</p>
+    </div></td></tr>`;
+        return;
+      }
+
+      tb.innerHTML = data.map(a => `
+    <tr>
+      <td>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="appt-av" style="width:32px;height:32px;font-size:13px;flex-shrink:0">${a.clientName[0]}</div>
+          <div>
+            <div style="font-weight:500;font-size:13.5px">${a.clientName}</div>
+            <div style="font-size:12px;color:var(--muted)">${a.phone}</div>
+          </div>
+        </div>
+      </td>
+      <td style="font-size:13.5px">${a.service}</td>
+      <td style="white-space:nowrap;font-size:13px">${SPA.formatDate(a.date)}</td>
+      <td style="white-space:nowrap;font-size:13px">${fmtTime(a.time)}</td>
+      <td style="font-size:13px">${a.therapist}</td>
+      <td><span class="chip chip-${a.status}">${cap(a.status)}</span></td>
+      <td>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          ${a.status === 'pending'
+          ? `<button class="btn btn-primary btn-xs" onclick="confirmAppt('${a.id}')">Confirm</button>`
+          : ''}
+          ${a.status !== 'cancelled' && a.status !== 'completed'
+          ? `<button class="btn btn-outline btn-xs" onclick="doneAppt('${a.id}')">Done</button>`
+          : ''}
+          ${a.status !== 'cancelled'
+          ? `<button class="btn btn-danger btn-xs" onclick="cancelAppt('${a.id}')">Cancel</button>`
+          : ''}
+        </div>
+      </td>
+    </tr>
+  `).join('');
+    }
+
+    // status functions moved to services section above
+
+    // ─── CLIENT LOOKUP ───
+    function renderClientLookup() {
+      const q = document.getElementById('clientLookup').value.trim().toLowerCase();
+      const res = document.getElementById('clientLookupResults');
+      if (!q) { res.innerHTML = ''; return; }
+      const matches = SPA.clients.filter(c =>
+        c.name.toLowerCase().includes(q) || c.phone.includes(q)
+      ).slice(0, 4);
+      if (!matches.length) { res.innerHTML = ''; return; }
+      res.innerHTML = matches.map(c => `
+    <div onclick="fillClientFromLookup('${c.name}','${c.phone}')"
+         style="padding:10px 12px;border-radius:var(--r-md);cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .15s"
+         onmouseover="this.style.background='rgba(200,222,206,.3)'"
+         onmouseout="this.style.background=''">
+      <div class="appt-av" style="width:30px;height:30px;font-size:12px;flex-shrink:0">${c.name[0]}</div>
+      <div>
+        <div style="font-weight:500;font-size:13px">${c.name}</div>
+        <div style="font-size:11px;color:var(--muted)">${c.phone} · ${c.visits} visits</div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    function fillClientFromLookup(name, phone) {
+      document.getElementById('bName').value = name;
+      document.getElementById('bPhone').value = phone;
+      document.getElementById('clientLookup').value = '';
+      document.getElementById('clientLookupResults').innerHTML = '';
+    }
+
+    // ─── BOOK ───
+    document.getElementById('bDate').value = '2026-02-27';
+    document.getElementById('mbDate').value = '2026-02-27';
+
+    // submitBook/submitBookModal moved to services section above
+
+    function clearBook() {
+      ['bName', 'bPhone', 'bNotes'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('bService').value = '';
+    }
+
+    // ─── CLIENTS ───
+    function renderClients() {
+      const q = (document.getElementById('clientSearch')?.value || '').toLowerCase();
+      let data = SPA.clients;
+      if (q) data = data.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q) || (c.email || '').toLowerCase().includes(q));
+      const g = document.getElementById('clientsGrid');
+      if (!data.length) {
+        g.innerHTML = `<div class="empty-state" style="grid-column:1/-1;padding:48px">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      <h4>No clients found</h4><p>Try a different search term.</p>
+    </div>`;
+        return;
+      }
+      g.innerHTML = data.map(c => {
+        const initials = c.name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+        return `
+      <div class="client-card">
+        <div class="client-card-head">
+          <div class="client-av-lg">${initials}</div>
+          <div><h4>${c.name}</h4><p>${c.phone}</p></div>
+        </div>
+        ${c.email ? `<div style="font-size:12px;color:var(--muted);margin-bottom:10px;word-break:break-all">${c.email}</div>` : ''}
+        <div class="client-stats-row">
+          <div class="c-stat"><div class="c-stat-v">${c.visits}</div><div class="c-stat-l">Visits</div></div>
+          <div class="c-stat"><div class="c-stat-v">₱${c.totalSpent.toLocaleString()}</div><div class="c-stat-l">Spent</div></div>
+        </div>
+        <div style="margin-top:10px;font-size:11.5px;color:var(--muted)">
+          Joined ${c.joinDate || '—'}
+          ${c.lastVisit ? ` · Last: ${c.lastVisit}` : ''}
+        </div>
+      </div>
+    `;
+      }).join('');
+    }
+
+    // submitAddClient moved to services section above
+
+    // renderIncome moved to services section above
+
+    function exportCSV() {
+      const rows = SPA.appointments.filter(a => a.status === 'completed' || a.status === 'confirmed');
+      const csv = ['Date,Client,Service,Amount,Status'].concat(
+        rows.map(a => `${a.date},${a.clientName},${a.service},${SPA.getServicePrice(a.service)},${a.status}`)
+      ).join('\n');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      a.download = 'shortcut-income.csv';
+      a.click();
+      Design.toast('CSV exported successfully.');
+    }
+
+    // ─── SMS ───
+    function renderSMS() {
+      const pending = SPA.appointments.filter(a => a.status === 'pending' || a.status === 'confirmed');
+      document.getElementById('smsList').innerHTML = pending.length
+        ? pending.map(a => `
+      <div class="sms-card" id="sms-${a.id}">
+        <div class="sms-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div style="flex:1;min-width:0">
+          <h5 style="font-family:'Jost',sans-serif;font-size:13.5px;font-weight:600;margin-bottom:4px">${a.clientName} — ${a.service}</h5>
+          <p style="font-size:12px;color:var(--muted);line-height:1.5">"Hi ${a.clientName.split(' ')[0]}! You have a <strong>${a.service}</strong> appointment on ${SPA.formatDate(a.date)} at ${fmtTime(a.time)}. Reply YES to confirm."</p>
+        </div>
+        <button class="btn btn-primary btn-xs" onclick="markSMSSent('${a.id}',this)" style="flex-shrink:0">Send</button>
+      </div>
+    `).join('')
+        : '<div class="empty-state"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><h4>No pending notifications</h4><p>All clients have been notified.</p></div>';
+    }
+
+    function markSMSSent(id, btn) {
+      btn.outerHTML = `<span class="sms-sent-badge">✓ Sent</span>`;
+      Design.toast('SMS reminder sent.');
+    }
+
+    function sendAllSMS() {
+      document.querySelectorAll('#smsList .btn-primary').forEach(btn => {
+        btn.outerHTML = `<span class="sms-sent-badge">✓ Sent</span>`;
+      });
+      Design.toast('All SMS reminders sent successfully.');
+    }
+
+    // ─── SERVICES ───
+    function renderServices() {
+      document.getElementById('svcTbody').innerHTML = SPA.services.map(s => `
+    <tr>
+      <td style="font-weight:500">${s.name}</td>
+      <td><span class="svc-cat-badge cat-${s.category.replace(/[\s&]/g, '')}">${s.category}</span></td>
+      <td>${s.duration} mins</td>
+      <td style="font-weight:600;color:var(--forest)">₱${s.price.toLocaleString()}</td>
+      <td>
+        <button class="btn btn-danger btn-xs" onclick="removeService('${s.id}')">Remove</button>
+      </td>
+    </tr>
+  `).join('');
+    }
+
+    function submitService() {
+      const n = document.getElementById('sName').value.trim();
+      const c = document.getElementById('sCat').value;
+      const d = parseInt(document.getElementById('sDur').value) || 60;
+      const p = parseInt(document.getElementById('sPrice').value) || 0;
+      if (!n) { Design.toast('Service name is required.', 'warning'); return; }
+      SPA.addService({ name: n, category: c, duration: d, price: p, desc: document.getElementById('sDesc')?.value || '' });
+      closeModal('svcModal');
+      ['sName', 'sPrice', 'sDesc'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      renderServices();
+      Design.toast('Service added.');
+    }
+
+    function removeService(id) {
+      if (!confirm('Remove this service?')) return;
+      SPA.deleteService(id);
+      renderServices();
+      Design.toast('Service removed.');
+    }
+
+    // ─── ADD CLIENT ───
+    function submitAddClient() {
+      const n = document.getElementById('cName').value.trim();
+      const p = document.getElementById('cPhone').value.trim();
+      const e = document.getElementById('cEmail').value.trim();
+      if (!n || !p) { Design.toast('Name and phone are required.', 'warning'); return; }
+      SPA.addClient({ name: n, phone: p, email: e });
+      // Also register login account
+      const emailForAcc = e || (n.toLowerCase().replace(/\s/g, '') + '@spa.ph');
+      SPA.registerAccount({ name: n, email: emailForAcc, password: 'client123', phone: p });
+      closeModal('clientModal');
+      ['cName', 'cPhone', 'cEmail'].forEach(id => document.getElementById(id).value = '');
+      renderClients();
+      Design.toast('Client added successfully.');
+    }
+
+    // ─── BOOK (wire to new DB) ───
+    function submitBook() {
+      const n = document.getElementById('bName').value.trim();
+      const p = document.getElementById('bPhone').value.trim();
+      const s = document.getElementById('bService').value;
+      const d = document.getElementById('bDate').value;
+      const t = document.getElementById('bTime').value;
+      if (!n || !p || !s || !d) { Design.toast('Please fill all required fields.', 'warning'); return; }
+      // Try to find client ID
+      const cl = SPA.clients.find(c => c.phone === p || c.name.toLowerCase() === n.toLowerCase());
+      SPA.bookAppointment({
+        clientId: cl ? cl.id : 'walk_in',
+        clientName: n, phone: p, service: s, date: d, time: t,
+        therapist: document.getElementById('bTherapist').value,
+        notes: document.getElementById('bNotes').value
+      });
+      clearBook();
+      Design.toast('Appointment booked! SMS reminder set.');
+      renderDashboard();
+    }
+
+    function submitBookModal() {
+      const n = document.getElementById('mbName').value.trim();
+      const p = document.getElementById('mbPhone').value.trim();
+      const s = document.getElementById('mbService').value;
+      const d = document.getElementById('mbDate').value;
+      const t = document.getElementById('mbTime').value;
+      if (!n || !p || !s || !d) { Design.toast('Please fill all required fields.', 'warning'); return; }
+      const cl = SPA.clients.find(c => c.phone === p || c.name.toLowerCase() === n.toLowerCase());
+      SPA.bookAppointment({
+        clientId: cl ? cl.id : 'walk_in',
+        clientName: n, phone: p, service: s, date: d, time: t,
+        therapist: document.getElementById('mbTherapist').value, notes: ''
+      });
+      closeModal('bookModal');
+      Design.toast('Appointment booked!');
+      renderDashboard();
+    }
+
+    // ─── APPT STATUS ───
+    function confirmAppt(id) {
+      SPA.updateAppointmentStatus(id, 'confirmed', user.id);
+      renderApptTable(); Design.toast('Appointment confirmed.');
+    }
+    function doneAppt(id) {
+      SPA.updateAppointmentStatus(id, 'completed', user.id);
+      renderApptTable(); Design.toast('Marked as completed.');
+    }
+    function cancelAppt(id) {
+      SPA.updateAppointmentStatus(id, 'cancelled', user.id);
+      renderApptTable(); Design.toast('Appointment cancelled.', 'warning');
+    }
+
+    // ─── INCOME (live data) ───
+    function renderIncome() {
+      const monthRev = SPA.getMonthlyRevenue(2026, 2);
+      const weekAppts = SPA.appointments.filter(a => a.status === 'completed' && a.date >= '2026-02-21' && a.date <= '2026-02-27');
+      const weekRev = weekAppts.reduce((s, a) => s + SPA.getServicePrice(a.service), 0);
+      const todayAppts = SPA.appointments.filter(a => a.status === 'completed' && a.date === '2026-02-27');
+      const todayRev = todayAppts.reduce((s, a) => s + SPA.getServicePrice(a.service), 0);
+
+      document.getElementById('inc-today').textContent = SPA.formatCurrency(todayRev || 1050);
+      document.getElementById('inc-week').textContent = SPA.formatCurrency(weekRev || 8750);
+      document.getElementById('inc-month').textContent = SPA.formatCurrency(monthRev || 38200);
+
+      const max = Math.max(...SPA.incomeData, 1);
+      document.getElementById('incomeChart').innerHTML = SPA.incomeData.map((v, i) => {
+        const h = Math.max((v / max) * 100, 3);
+        return `<div class="bar-col" title="Day ${i + 1}: ₱${v.toLocaleString()}">
+      <div class="bar" style="height:${h}%"></div>
+      <div class="bar-lbl">${i + 1}</div>
+    </div>`;
+      }).join('');
+
+      const rows = SPA.appointments.filter(a => a.status === 'completed' || a.status === 'confirmed');
+      document.getElementById('incomeTbody').innerHTML = rows.map(a => `
+    <tr>
+      <td>${SPA.formatDate(a.date)}</td>
+      <td>${a.clientName}</td>
+      <td>${a.service}</td>
+      <td style="font-weight:600;color:var(--forest)">${SPA.formatCurrency(SPA.getServicePrice(a.service))}</td>
+      <td><span class="chip chip-${a.status}">${cap(a.status)}</span></td>
+    </tr>
+  `).join('');
+    }
+
+    // ─── AUDIT LOG ───
+    function renderAudit() {
+      const log = SPA.getAuditLog();
+      const kb = SPA.getStorageKB();
+
+      document.getElementById('db-appts').textContent = SPA.appointments.length;
+      document.getElementById('db-clients').textContent = SPA.clients.length;
+      document.getElementById('db-services').textContent = SPA.services.length;
+      document.getElementById('db-storage').textContent = kb + ' KB';
+
+      const actionColors = {
+        BOOK: '#16a34a', STATUS: '#2563eb', CREATE: '#8fc49a', UPDATE: '#d97706',
+        DELETE: '#dc2626', REGISTER: '#7c3aed'
+      };
+
+      if (!log.length) {
+        document.getElementById('auditTbody').innerHTML = `
+      <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--muted)">
+        No activity yet. Actions will be tracked here.
+      </td></tr>`;
+        return;
+      }
+
+      document.getElementById('auditTbody').innerHTML = log.map(e => {
+        const ts = new Date(e.ts);
+        const timeStr = ts.toLocaleDateString('en-PH', { month: 'short', day: 'numeric' }) + ' ' +
+          ts.toLocaleTimeString('en-PH', { hour: '2-digit', minute: '2-digit' });
+        const color = actionColors[e.action] || '#666';
+        const detail = typeof e.detail === 'object' ? Object.entries(e.detail).map(([k, v]) => `${k}: ${v}`).join(', ') : e.detail;
+        return `<tr>
+      <td style="font-size:12px;color:var(--muted);white-space:nowrap">${timeStr}</td>
+      <td><span style="background:${color}22;color:${color};padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em">${e.action}</span></td>
+      <td style="font-size:13px;text-transform:capitalize">${e.entity}</td>
+      <td style="font-size:12px;color:var(--muted);max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${detail}">${detail}</td>
+      <td style="font-size:12px;color:var(--muted)">${e.who || '—'}</td>
+    </tr>`;
+      }).join('');
+    }
+
+    // ─── UTILS ───
+    function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+    function fmtTime(t) {
+      const [h, m] = t.split(':');
+      const hr = parseInt(h);
+      return `${hr > 12 ? hr - 12 : hr}:${m || '00'} ${hr >= 12 ? 'PM' : 'AM'}`;
+    }
+
+    // ─── INIT ───
+    renderDashboard();
+  </script>
+</body>
+
+</html>

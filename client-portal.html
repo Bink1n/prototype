@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal — Shortcut's Skin Care Spa</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="client.css">
+</head>
+
+<body>
+
+  <!-- MOBILE SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="brand-row">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C12 2 4 7 4 14C4 18.418 7.582 22 12 22C16.418 22 20 18.418 20 14C20 7 12 2 12 2Z"
+              fill="rgba(143,196,154,0.2)" stroke="#8fc49a" stroke-width="1.2" />
+            <line x1="12" y1="5" x2="12" y2="20" stroke="#8fc49a" stroke-width="1" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h3>Shortcut's Spa</h3>
+          <span>Client Portal</span>
+        </div>
+      </div>
+      <div class="client-profile">
+        <div class="profile-av" id="sideAvatar">M</div>
+        <div class="profile-info">
+          <h5 id="sideName">Client</h5>
+          <p id="sideLoyalty">Member</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-body">
+      <div class="nav-lbl">Menu</div>
+      <button class="nav-btn active" onclick="nav('home',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+        Home
+      </button>
+      <button class="nav-btn" onclick="nav('services',this)">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+        </svg>
+        Services
+      </button>
+      <button class="nav-btn" onclick="nav('book',this)">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+        Book Appointment
+      </button>
+      <button class="nav-btn" onclick="nav('appointments',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+        </svg>
+        My Appointments
+      </button>
+      <button class="nav-btn" onclick="nav('ar',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        AR Try-On
+      </button>
+      <button class="nav-btn" onclick="nav('profile',this)">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+        My Profile
+      </button>
+    </div>
+
+    <div class="sidebar-foot">
+      <button class="logout-row" onclick="logout()">
+        <svg viewBox="0 0 24 24">
+          <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
+        </svg>
+        Sign Out
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="mobile-menu-btn" onclick="openSidebar()">
+          <svg viewBox="0 0 24 24">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+        <div class="page-h" id="pageH">Home</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <!-- Notifications bell -->
+        <button id="notifBell" onclick="openNotifications()" title="Notifications"
+          style="position:relative;width:38px;height:38px;border-radius:var(--r-md);background:var(--white);border:1.5px solid rgba(200,222,206,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s">
+          <svg viewBox="0 0 24 24" width="17" height="17" stroke="var(--forest)" fill="none" stroke-width="2">
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <span id="notifDot"
+            style="display:none;position:absolute;top:6px;right:6px;width:8px;height:8px;background:#ef4444;border-radius:50%;border:2px solid #fff"></span>
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="nav('book', document.querySelectorAll('.nav-btn')[2])">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Book Now
+        </button>
+      </div>
+    </div>
+
+    <!-- Notifications Drawer -->
+    <div id="notifDrawer"
+      style="display:none;position:fixed;top:64px;right:20px;width:340px;background:#fff;border-radius:var(--r-xl);box-shadow:var(--shadow-xl);border:1px solid rgba(200,222,206,.3);z-index:200;overflow:hidden">
+      <div
+        style="padding:16px 20px;border-bottom:1px solid rgba(200,222,206,.2);display:flex;align-items:center;justify-content:space-between">
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--forest)">
+          Notifications</div>
+        <div style="display:flex;gap:8px">
+          <button onclick="markAllRead()"
+            style="font-size:11px;color:var(--sage);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-weight:500">Mark
+            all read</button>
+          <button onclick="closeNotifications()"
+            style="background:none;border:none;cursor:pointer;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--muted)">✕</button>
+        </div>
+      </div>
+      <div id="notifList" style="max-height:340px;overflow-y:auto;padding:8px 0"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- ══ HOME ══ -->
+      <div class="view active" id="view-home">
+        <div class="hero">
+          <div class="hero-bg-circle"></div>
+          <div class="hero-bg-circle"></div>
+          <div class="hero-content">
+            <div class="hero-greeting">Welcome back</div>
+            <div class="hero-name">Hello, <em id="heroName">Client</em> ✨</div>
+            <div class="hero-sub">Your beauty journey continues. Ready to glow?</div>
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <div class="hero-stat-val" id="heroVisits">0</div>
+                <div class="hero-stat-lbl">Visits</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-val" id="heroAppts">0</div>
+                <div class="hero-stat-lbl">Appointments</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-val" id="heroSpent">₱0</div>
+                <div class="hero-stat-lbl">Total Spent</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-val" id="heroPoints">0</div>
+                <div class="hero-stat-lbl">Loyalty Pts</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-main-grid">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Upcoming Appointments</div>
+              <button class="btn btn-outline btn-sm"
+                onclick="nav('appointments', document.querySelectorAll('.nav-btn')[3])">View All</button>
+            </div>
+            <div id="homeAppts"></div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Quick Book</div>
+            </div>
+            <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Popular services, one tap away.</p>
+            <div style="display:flex;flex-direction:column;gap:8px" id="quickBook"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ SERVICES ══ -->
+      <div class="view" id="view-services">
+        <div style="margin-bottom:18px">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);margin-bottom:6px">Our
+            Services</h2>
+          <p style="font-size:14px;color:var(--muted)">Discover our full range of beauty and wellness treatments.</p>
+        </div>
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+
+      <!-- ══ BOOK APPOINTMENT ══ -->
+      <div class="view" id="view-book">
+        <div class="card" style="max-width:600px;margin:0 auto">
+          <div style="margin-bottom:24px">
+            <div class="card-title" style="font-size:22px;margin-bottom:4px">Book an Appointment</div>
+            <p style="font-size:13.5px;color:var(--muted)">Choose your desired service, date, and therapist.</p>
+          </div>
+
+          <div id="activeWarning"
+            style="display:none;background:#fef9c3;border:1px solid #fde68a;color:#854d0e;border-radius:12px;padding:13px 16px;margin-bottom:18px;font-size:13.5px;">
+          </div>
+
+          <div class="form-grid">
+            <div class="fg"><label>Service *</label>
+              <select id="bkService" onchange="updateBookingPrice()">
+                <option value="">Select a service</option>
+                <option>Facial Care</option>
+                <option>Underarm Care</option>
+                <option>Eyebrow Shaping</option>
+                <option>Eyelash Service</option>
+                <option>Wax Service</option>
+                <option>Glutathione Shot</option>
+                <option>Glutathione Drip</option>
+                <option>Manicure</option>
+                <option>Pedicure</option>
+                <option>Mani & Pedi</option>
+              </select>
+            </div>
+            <div class="fg"><label>Preferred Therapist</label>
+              <select id="bkTherapist">
+                <option>Any Available</option>
+                <option>Maria Santos</option>
+                <option>Ana Reyes</option>
+                <option>Joy Cruz</option>
+              </select>
+            </div>
+            <div class="fg"><label>Date *</label><input type="date" id="bkDate" min="2026-02-27" value="2026-02-27">
+            </div>
+            <div class="fg"><label>Preferred Time</label>
+              <select id="bkTime">
+                <option value="08:00">8:00 AM</option>
+                <option value="09:00">9:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="13:00">1:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+                <option value="17:00">5:00 PM</option>
+              </select>
+            </div>
+            <div class="fg full"><label>Notes / Special Requests</label>
+              <textarea id="bkNotes" placeholder="Any concerns, allergies, or special requests…"></textarea>
+            </div>
+          </div>
+
+          <!-- Price Summary -->
+          <div
+            style="background:linear-gradient(135deg,rgba(200,222,206,.2),rgba(143,196,154,.1));border:1px solid rgba(143,196,154,.25);border-radius:var(--r-lg);padding:18px;margin-top:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+            <div>
+              <div
+                style="font-size:12px;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">
+                Estimated Price</div>
+              <div style="font-size:24px;font-weight:700;color:var(--forest);font-family:'Playfair Display',serif"
+                id="bkPrice">Select a service</div>
+            </div>
+            <button class="btn btn-primary btn-lg" onclick="submitBooking()">
+              <svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Confirm Booking
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ MY APPOINTMENTS ══ -->
+      <div class="view" id="view-appointments">
+        <div style="margin-bottom:18px">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);margin-bottom:6px">My
+            Appointments</h2>
+          <p style="font-size:14px;color:var(--muted)">View and manage all your bookings.</p>
+        </div>
+        <div id="myAppointmentsList"></div>
+      </div>
+
+      <!-- ══ AR TRY-ON ══ -->
+      <div class="view" id="view-ar">
+        <div style="margin-bottom:18px">
+          <h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--forest);margin-bottom:6px">AR
+            Try-On</h2>
+          <p style="font-size:14px;color:var(--muted)">Preview beauty effects using your camera in real time.</p>
+        </div>
+
+        <div class="ar-layout">
+          <div class="ar-left-panel">
+            <div class="card">
+              <div class="card-title" style="margin-bottom:14px">Select Treatment</div>
+              <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Choose a service to preview on your camera
+                feed.</p>
+
+              <button class="ar-svc-btn active" onclick="selectAR(this,'eyebrow')">
+                <span class="ar-ic">🪡</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Eyebrow Shaping</div>
+                  <div style="font-size:11px;color:var(--muted)">Thread & shape</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'lash')">
+                <span class="ar-ic">👁️</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Eyelash Service</div>
+                  <div style="font-size:11px;color:var(--muted)">Lash lift & tint</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'facial')">
+                <span class="ar-ic">✨</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Facial Glow</div>
+                  <div style="font-size:11px;color:var(--muted)">Skin brightening</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'blush')">
+                <span class="ar-ic">🌸</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Blush Effect</div>
+                  <div style="font-size:11px;color:var(--muted)">Cheek color</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'lips')">
+                <span class="ar-ic">💋</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Lip Tint</div>
+                  <div style="font-size:11px;color:var(--muted)">Lip color overlay</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'nails')">
+                <span class="ar-ic">💅</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Nail Color</div>
+                  <div style="font-size:11px;color:var(--muted)">Manicure preview</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'contour')">
+                <span class="ar-ic">🎨</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Contour</div>
+                  <div style="font-size:11px;color:var(--muted)">Face sculpt effect</div>
+                </div>
+              </button>
+              <button class="ar-svc-btn" onclick="selectAR(this,'glitter')">
+                <span class="ar-ic">🌟</span>
+                <div>
+                  <div style="font-weight:500;font-size:13px">Glitter Glow</div>
+                  <div style="font-size:11px;color:var(--muted)">Sparkling highlight</div>
+                </div>
+              </button>
+            </div>
+
+            <div class="card"
+              style="background:linear-gradient(135deg,rgba(200,222,206,.15),rgba(143,196,154,.08));border-color:rgba(143,196,154,.25)">
+              <div class="card-title" style="margin-bottom:10px;font-size:14px">ℹ️ About AR Try-On</div>
+              <p style="font-size:12.5px;color:var(--muted);line-height:1.7">Uses your device camera to overlay beauty
+                effects in real time. No photos are stored. Results vary by lighting and camera quality.</p>
+              <div style="margin-top:14px">
+                <button class="btn btn-primary btn-sm btn-full"
+                  onclick="nav('book', document.querySelectorAll('.nav-btn')[2])">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  Book This Service
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="card" style="padding:0;overflow:hidden">
+              <div
+                style="padding:18px 20px;border-bottom:1px solid rgba(200,222,206,.25);display:flex;align-items:center;justify-content:space-between">
+                <div>
+                  <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--forest)">
+                    Live AR Preview</div>
+                  <div style="font-size:12px;color:var(--muted);margin-top:2px">Point camera at your face</div>
+                </div>
+                <div
+                  style="background:rgba(200,222,206,.25);border:1px solid rgba(143,196,154,.3);border-radius:var(--r-full);padding:4px 14px;font-size:12px;font-weight:500;color:var(--sage)"
+                  id="arSelectedLabel">Eyebrow Shaping</div>
+              </div>
+
+              <div class="ar-canvas-wrap" style="border-radius:0">
+                <video id="arVideo" autoplay playsinline muted></video>
+                <canvas id="arCanvas"></canvas>
+                <div class="ar-placeholder" id="arPlaceholder">
+                  <svg viewBox="0 0 24 24"
+                    style="width:48px;height:48px;stroke:rgba(255,255,255,.25);fill:none;stroke-width:1.2">
+                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                  <p style="font-size:13px;color:rgba(255,255,255,.4);text-align:center;line-height:1.6">Start the
+                    camera to<br>preview the AR effect</p>
+                </div>
+              </div>
+
+              <!-- Face tracking status badge -->
+              <div id="arStatus"
+                style="display:none;padding:6px 20px;background:linear-gradient(90deg,rgba(200,222,206,.2),transparent);font-size:12px;color:var(--sage);font-weight:500;border-top:1px solid rgba(200,222,206,.2)">
+                ⟳ Initializing AI…
+              </div>
+              <div id="arFaceStatus" style="display:none;padding:4px 20px;font-size:11.5px;color:var(--muted)"></div>
+
+              <!-- Controls bar -->
+              <div style="padding:14px 20px;background:var(--white);border-top:1px solid rgba(200,222,206,.15)">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                  <button class="btn btn-primary" id="arToggleBtn" onclick="toggleCamera()"
+                    style="flex:1;min-width:130px">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2">
+                      <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+                      <circle cx="12" cy="13" r="4" />
+                    </svg>
+                    Start Camera
+                  </button>
+                  <button class="btn btn-outline btn-sm" id="beforeAfterBtn" onclick="toggleBeforeAfter()"
+                    title="Before/After split view" style="gap:4px">
+                    ◧ Before / After
+                  </button>
+                  <button class="btn btn-outline btn-sm" onclick="takeSnapshot()" title="Save snapshot">
+                    📸 Save
+                  </button>
+                  <button class="btn btn-outline btn-sm" onclick="flipCamera()" title="Flip camera" id="flipBtn"
+                    style="display:none">
+                    🔄
+                  </button>
+                </div>
+
+                <!-- Intensity slider -->
+                <div style="margin-top:14px;display:flex;align-items:center;gap:12px">
+                  <span style="font-size:12px;color:var(--muted);font-weight:500;min-width:60px">Intensity:</span>
+                  <input type="range" id="arIntensity" min="10" max="100" value="70"
+                    oninput="onIntensityChange(this.value)" style="flex:1;accent-color:var(--sage);height:4px">
+                  <span id="arIntensityVal"
+                    style="font-size:12px;color:var(--sage);font-weight:600;min-width:32px">70%</span>
+                </div>
+
+                <!-- Color picker row (shown for eyebrow, nails, lips) -->
+                <div id="arColorRow" style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
+                  <span style="font-size:12px;color:var(--muted);font-weight:500">Color:</span>
+                  <input type="color" id="arColorPicker" value="#e91e8c" onchange="onColorChange(this.value)"
+                    style="width:36px;height:28px;border:none;border-radius:8px;cursor:pointer;padding:0;background:none">
+                  <!-- Color presets -->
+                  <div id="colorPresets" style="display:flex;gap:5px;flex-wrap:wrap"></div>
+                </div>
+
+                <!-- AI badge -->
+                <div style="margin-top:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                  <span
+                    style="background:linear-gradient(90deg,#1e3d28,#2d5a3d);color:#8fc49a;font-size:10px;padding:3px 9px;border-radius:20px;letter-spacing:.05em;font-weight:600">✦
+                    AI FACE MESH</span>
+                  <span style="font-size:11px;color:var(--muted)">MediaPipe · 468 landmarks · Real-time</span>
+                  <span id="arFpsDisplay" style="font-size:10px;color:var(--muted);margin-left:auto"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ PROFILE ══ -->
+      <div class="view" id="view-profile">
+        <div class="profile-header">
+          <div class="profile-av-lg" id="profileAv">M</div>
+          <div>
+            <h3 id="profileName">Client Name</h3>
+            <div style="font-size:13.5px;color:rgba(255,255,255,.45);margin-top:4px" id="profileEmail">email</div>
+            <!-- Loyalty tier badge -->
+            <div id="loyaltyBadge"
+              style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:30px;padding:4px 14px">
+              <span id="loyaltyIcon">🌿</span>
+              <span id="loyaltyTierName" style="font-size:12px;color:rgba(255,255,255,.8);font-weight:600"></span>
+              <span id="loyaltyPtsDisplay" style="font-size:11px;color:rgba(255,255,255,.4)"></span>
+            </div>
+            <div class="profile-stats">
+              <div>
+                <div class="profile-stat-val" id="profVisits">0</div>
+                <div class="profile-stat-lbl">Visits</div>
+              </div>
+              <div>
+                <div class="profile-stat-val" id="profSpent">₱0</div>
+                <div class="profile-stat-lbl">Spent</div>
+              </div>
+              <div>
+                <div class="profile-stat-val" id="profAppts">0</div>
+                <div class="profile-stat-lbl">Appointments</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px">
+          <div class="card">
+            <div class="card-title" style="margin-bottom:20px">Update Information</div>
+            <div class="form-grid">
+              <div class="fg"><label>Full Name</label><input type="text" id="pfName"></div>
+              <div class="fg"><label>Phone</label><input type="text" id="pfPhone"></div>
+              <div class="fg full"><label>Email</label><input type="email" id="pfEmail"></div>
+              <div class="fg full" style="flex-direction:row;justify-content:flex-end">
+                <button class="btn btn-primary" onclick="saveProfile()">
+                  <svg viewBox="0 0 24 24">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  Save Changes
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="margin-bottom:16px">Leave a Review</div>
+            <div class="fg" style="margin-bottom:12px"><label>Service</label>
+              <select id="revService" style="width:100%">
+                <option value="">Select a service</option>
+              </select>
+            </div>
+            <div style="display:flex;gap:6px;margin-bottom:12px" id="starRating">
+              <span style="font-size:12px;color:var(--muted)">Rating:</span>
+              <button onclick="setRating(1)" class="star-btn" data-star="1"
+                style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1">⭐</button>
+              <button onclick="setRating(2)" class="star-btn" data-star="2"
+                style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1">⭐</button>
+              <button onclick="setRating(3)" class="star-btn" data-star="3"
+                style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1">⭐</button>
+              <button onclick="setRating(4)" class="star-btn" data-star="4"
+                style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1">⭐</button>
+              <button onclick="setRating(5)" class="star-btn" data-star="5"
+                style="background:none;border:none;font-size:20px;cursor:pointer;line-height:1">⭐</button>
+            </div>
+            <input type="hidden" id="revRating" value="5">
+            <div class="fg" style="margin-bottom:12px"><label>Comment</label>
+              <textarea id="revText" placeholder="Share your experience…" style="min-height:80px"></textarea>
+            </div>
+            <button class="btn btn-primary btn-sm btn-full" onclick="submitReview()">Submit Review</button>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="card" style="max-width:800px;margin-top:20px">
+          <div class="card-title" style="margin-bottom:16px">Recent Reviews <span id="avgRating"
+              style="font-size:14px;color:var(--muted);font-weight:400"></span></div>
+          <div id="reviewsList"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cancel Modal -->
+  <div class="overlay" id="cancelModal">
+    <div class="modal">
+      <div class="modal-title">Cancel Appointment</div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:8px;line-height:1.6">Are you sure you want to cancel
+        this appointment? Please cancel at least 24 hours in advance to avoid fees.</p>
+      <input type="hidden" id="cancelId">
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="closeModal()">Keep It</button>
+        <button class="btn btn-danger" onclick="confirmCancel()">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="shared.js"></script>
+  <script src="design.js"></script>
+  <script>
+    // ─── AUTH ───
+    const user = SPA.getSession();
+    if (!user || user.role !== 'client') window.location.href = 'index.html';
+
+    const clientData = SPA.clients.find(c => c.id === user.id) || { visits: 0, totalSpent: 0, lastVisit: '—' };
+
+    document.getElementById('sideAvatar').textContent = user.name[0].toUpperCase();
+    document.getElementById('sideName').textContent = user.name.split(' ')[0];
+
+    function logout() { SPA.clearSession(); window.location.href = 'index.html'; }
+
+    // ─── MOBILE SIDEBAR ───
+    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('active'); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('active'); }
+
+    // ─── NAV ───
+    const pageTitles = {
+      home: 'Home', services: 'Our Services', book: 'Book Appointment',
+      appointments: 'My Appointments', ar: 'AR Try-On', profile: 'My Profile'
+    };
+
+    function nav(id, el) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById('view-' + id).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+      document.getElementById('pageH').textContent = pageTitles[id] || id;
+      closeSidebar();
+
+      const renders = {
+        home: renderHome,
+        services: renderServices,
+        book: checkActiveAppt,
+        appointments: renderMyAppts,
+        profile: renderProfile
+      };
+      if (renders[id]) renders[id]();
+    }
+
+    // ─── HOME ───
+    function renderHome() {
+      const fn = user.name.split(' ')[0];
+      const freshClient = SPA.getClient(user.id) || clientData;
+      document.getElementById('heroName').textContent = fn;
+      Design.animateCounter(document.getElementById('heroVisits'), freshClient.visits || 0);
+
+      const myAppts = SPA.getClientAppointments(user.id);
+      Design.animateCounter(document.getElementById('heroAppts'), myAppts.length);
+      document.getElementById('heroSpent').textContent = SPA.formatCurrency(freshClient.totalSpent || 0);
+      Design.animateCounter(document.getElementById('heroPoints'), freshClient.loyaltyPts || 0);
+
+      // Update sidebar loyalty
+      const tier = SPA.getLoyaltyTier(freshClient.loyaltyPts || 0);
+      document.getElementById('sideLoyalty').textContent = `${tier.icon} ${tier.tier} Member`;
+
+      // Update notification bell
+      const unread = SPA.getUnreadCount(user.id);
+      document.getElementById('notifDot').style.display = unread > 0 ? 'block' : 'none';
+
+      const upcoming = myAppts.filter(a => a.status === 'pending' || a.status === 'confirmed');
+      const hEl = document.getElementById('homeAppts');
+
+      if (!upcoming.length) {
+        hEl.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <h4>No upcoming appointments</h4>
+      <p><a onclick="nav('book',document.querySelectorAll('.nav-btn')[2])" style="color:var(--sage);cursor:pointer;font-weight:500">Book your first appointment →</a></p>
+    </div>`;
+      } else {
+        hEl.innerHTML = upcoming.map(a => `
+      <div class="appt-card">
+        <div class="appt-card-date">
+          <div class="day">${a.date.split('-')[2]}</div>
+          <div class="month">${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][parseInt(a.date.split('-')[1]) - 1]}</div>
+        </div>
+        <div class="appt-card-info">
+          <h5>${a.service}</h5>
+          <p>${fmtTime(a.time)} · ${a.therapist}</p>
+        </div>
+        <span class="chip chip-${a.status}">${cap(a.status)}</span>
+      </div>
+    `).join('');
+      }
+
+      // Quick book
+      const popular = SPA.services.slice(0, 5);
+      const icons = ['✨', '💆', '👁️', '💅', '🌸'];
+      document.getElementById('quickBook').innerHTML = popular.map((s, i) => `
+    <button class="quick-svc-btn" onclick="quickBook('${s.name}')">
+      <span class="quick-svc-em">${icons[i % icons.length]}</span>
+      <div style="flex:1">
+        <div style="font-weight:500;font-size:13px">${s.name}</div>
+        <div style="font-size:11.5px;color:var(--muted)">₱${s.price.toLocaleString()} · ${s.duration} mins</div>
+      </div>
+      <svg viewBox="0 0 24 24" width="14" height="14" stroke="var(--muted)" fill="none" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  `).join('');
+    }
+
+    function quickBook(svcName) {
+      document.getElementById('bkService').value = svcName;
+      updateBookingPrice();
+      nav('book', document.querySelectorAll('.nav-btn')[2]);
+    }
+
+    // ─── SERVICES ───
+    function renderServices() {
+      const catEmoji = { Facial: '✨', Body: '💆', Nails: '💅', Wellness: '🌿', 'Lash & Brow': '👁️' };
+      document.getElementById('servicesGrid').innerHTML = SPA.services.map(s => `
+    <div class="svc-card">
+      <div class="svc-icon">${catEmoji[s.category] || '💎'}</div>
+      <div style="margin-bottom:6px">
+        <span class="svc-cat-badge cat-${s.category.replace(/[\s&]/g, '')}" style="font-size:10px">${s.category}</span>
+      </div>
+      <h4 style="font-family:'Jost',sans-serif;font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px">${s.name}</h4>
+      <p style="font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px">${s.desc}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--forest)">₱${s.price.toLocaleString()}</div>
+        <div style="font-size:12px;color:var(--muted);background:var(--cream);padding:4px 10px;border-radius:var(--r-full)">${s.duration} mins</div>
+      </div>
+      <button class="btn btn-primary btn-sm btn-full" onclick="quickBook('${s.name}')">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Book Now
+      </button>
+    </div>
+  `).join('');
+    }
+
+    // ─── BOOKING ───
+    function checkActiveAppt() {
+      const active = SPA.hasActiveAppointment(user.id);
+      const w = document.getElementById('activeWarning');
+      if (active) {
+        w.style.display = 'block';
+        w.innerHTML = '⚠️ You already have a pending or confirmed appointment. Please cancel it first before booking a new one.';
+      } else {
+        w.style.display = 'none';
+      }
+      // Populate services from DB
+      const bkSvc = document.getElementById('bkService');
+      const currentVal = bkSvc.value;
+      bkSvc.innerHTML = '<option value="">Select a service</option>' +
+        SPA.services.map(s => `<option value="${s.name}">${s.name} — ₱${s.price.toLocaleString()}</option>`).join('');
+      if (currentVal) bkSvc.value = currentVal;
+      updateBookingPrice();
+    }
+
+    function updateBookingPrice() {
+      const svc = document.getElementById('bkService').value;
+      const s = SPA.services.find(x => x.name === svc);
+      document.getElementById('bkPrice').textContent = s ? '₱' + s.price.toLocaleString() : 'Select a service';
+    }
+
+    function submitBooking() {
+      const svc = document.getElementById('bkService').value;
+      const date = document.getElementById('bkDate').value;
+      const time = document.getElementById('bkTime').value;
+      if (!svc || !date) { Design.toast('Please select a service and date.', 'warning'); return; }
+      if (SPA.hasActiveAppointment(user.id)) { Design.toast('You already have an active appointment.', 'warning'); return; }
+
+      SPA.bookAppointment({
+        clientId: user.id, clientName: user.name,
+        phone: user.phone || '', service: svc, date, time,
+        therapist: document.getElementById('bkTherapist').value,
+        notes: document.getElementById('bkNotes').value
+      });
+
+      Design.toast('🎉 Appointment booked! You will receive an SMS reminder.');
+      nav('appointments', document.querySelectorAll('.nav-btn')[3]);
+    }
+
+    // ─── MY APPOINTMENTS ───
+    function renderMyAppts() {
+      const all = SPA.getClientAppointments(user.id);
+      const el = document.getElementById('myAppointmentsList');
+
+      if (!all.length) {
+        el.innerHTML = `<div class="empty-state">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <h4>No appointments yet</h4>
+      <p><a onclick="nav('book',document.querySelectorAll('.nav-btn')[2])" style="color:var(--sage);cursor:pointer;font-weight:500">Book your first appointment →</a></p>
+    </div>`;
+        return;
+      }
+
+      el.innerHTML = all.map(a => `
+    <div class="card" style="margin-bottom:14px;padding:20px 22px">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <div style="font-family:'Jost',sans-serif;font-size:16px;font-weight:600;color:var(--text);margin-bottom:4px">${a.service}</div>
+          <div style="font-size:13px;color:var(--muted)">₱${SPA.getServicePrice(a.service).toLocaleString()}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span class="chip chip-${a.status}">${cap(a.status)}</span>
+          ${a.status === 'pending' || a.status === 'confirmed'
+          ? `<button class="btn btn-danger btn-sm" onclick="openCancelModal('${a.id}')">Cancel</button>` : ''}
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
+        <div style="background:var(--cream);border-radius:var(--r-sm);padding:10px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin-bottom:4px">Date</div>
+          <div style="font-size:13.5px;font-weight:500">${SPA.formatDate(a.date)}</div>
+        </div>
+        <div style="background:var(--cream);border-radius:var(--r-sm);padding:10px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin-bottom:4px">Time</div>
+          <div style="font-size:13.5px;font-weight:500">${fmtTime(a.time)}</div>
+        </div>
+        <div style="background:var(--cream);border-radius:var(--r-sm);padding:10px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;margin-bottom:4px">Therapist</div>
+          <div style="font-size:13.5px;font-weight:500">${a.therapist}</div>
+        </div>
+      </div>
+      ${a.notes ? `<div style="margin-top:12px;font-size:12.5px;color:var(--muted);background:rgba(200,222,206,.15);border-radius:var(--r-sm);padding:10px 12px;border-left:3px solid var(--mist)">📝 ${a.notes}</div>` : ''}
+    </div>
+  `).join('');
+    }
+
+    function openCancelModal(id) {
+      document.getElementById('cancelId').value = id;
+      document.getElementById('cancelModal').classList.add('open');
+    }
+    function closeModal() { document.getElementById('cancelModal').classList.remove('open'); }
+    function confirmCancel() {
+      const id = document.getElementById('cancelId').value;
+      SPA.cancelAppointment(id, user.id);
+      Design.toast('Appointment cancelled.', 'warning');
+      closeModal();
+      renderMyAppts();
+    }
+
+    // ─── PROFILE ───
+    function renderProfile() {
+      const freshClient = SPA.getClient(user.id) || clientData;
+      const freshAccount = SPA.accounts.find(a => a.id === user.id) || user;
+      user.name = freshAccount.name || user.name;
+      user.email = freshAccount.email || user.email;
+      user.phone = freshAccount.phone || user.phone;
+
+      document.getElementById('profileAv').textContent = user.name[0].toUpperCase();
+      document.getElementById('profileName').textContent = user.name;
+      document.getElementById('profileEmail').textContent = user.email;
+      document.getElementById('pfName').value = user.name;
+      document.getElementById('pfPhone').value = user.phone || '';
+      document.getElementById('pfEmail').value = user.email;
+
+      const appts = SPA.getClientAppointments(user.id).length;
+      document.getElementById('profVisits').textContent = freshClient.visits || 0;
+      document.getElementById('profSpent').textContent = SPA.formatCurrency(freshClient.totalSpent || 0);
+      document.getElementById('profAppts').textContent = appts;
+
+      // Loyalty tier
+      const pts = freshClient.loyaltyPts || 0;
+      const tier = SPA.getLoyaltyTier(pts);
+      document.getElementById('loyaltyIcon').textContent = tier.icon;
+      document.getElementById('loyaltyTierName').textContent = tier.tier + ' Member';
+      document.getElementById('loyaltyPtsDisplay').textContent = `${pts} pts`;
+
+      // Populate review service dropdown
+      const revSvc = document.getElementById('revService');
+      revSvc.innerHTML = '<option value="">Select a service</option>' +
+        SPA.services.map(s => `<option>${s.name}</option>`).join('');
+
+      // Render reviews
+      renderReviews();
+    }
+
+    function setRating(n) {
+      document.getElementById('revRating').value = n;
+      document.querySelectorAll('.star-btn').forEach((b, i) => {
+        b.style.filter = i < n ? 'saturate(1)' : 'saturate(0) opacity(0.35)';
+      });
+    }
+
+    function submitReview() {
+      const service = document.getElementById('revService').value;
+      const rating = parseInt(document.getElementById('revRating').value) || 5;
+      const text = document.getElementById('revText').value.trim();
+      if (!service) { Design.toast('Please select a service.', 'warning'); return; }
+      SPA.addReview({ clientId: user.id, clientName: user.name, service, rating, text });
+      document.getElementById('revText').value = '';
+      document.getElementById('revService').value = '';
+      setRating(5);
+      renderReviews();
+      Design.toast('Review submitted! Thank you! 🙏');
+    }
+
+    function renderReviews() {
+      const reviews = SPA.reviews.slice(0, 6);
+      const avg = SPA.getAverageRating();
+      document.getElementById('avgRating').textContent = `· ⭐ ${avg} avg (${SPA.reviews.length} reviews)`;
+      document.getElementById('reviewsList').innerHTML = reviews.length ? reviews.map(r => `
+        <div style="padding:14px 0;border-bottom:1px solid rgba(200,222,206,.2)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--moss),var(--forest));color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif">${r.clientName[0]}</div>
+              <div>
+                <div style="font-size:13px;font-weight:600">${r.clientName}</div>
+                <div style="font-size:11px;color:var(--muted)">${r.service}</div>
+              </div>
+            </div>
+            <div>
+              ${'⭐'.repeat(r.rating)}
+              <span style="font-size:11px;color:var(--muted);margin-left:4px">${SPA.formatDate(r.date)}</span>
+            </div>
+          </div>
+          ${r.text ? `<p style="font-size:13px;color:var(--muted);line-height:1.6;padding-left:38px">"${r.text}"</p>` : ''}
+        </div>
+      `).join('') : '<p style="color:var(--muted);font-size:13px;text-align:center;padding:20px">No reviews yet.</p>';
+    }
+
+    // ─── NOTIFICATIONS ───
+    function openNotifications() {
+      const drawer = document.getElementById('notifDrawer');
+      const isOpen = drawer.style.display === 'block';
+      if (isOpen) { closeNotifications(); return; }
+      drawer.style.display = 'block';
+      renderNotifications();
+    }
+
+    function closeNotifications() {
+      document.getElementById('notifDrawer').style.display = 'none';
+    }
+
+    function renderNotifications() {
+      const notifs = SPA.getClientNotifications(user.id);
+      const icons = { reminder: '🔔', promo: '🎁', points: '🎉', booking: '✅', info: 'ℹ️' };
+      document.getElementById('notifList').innerHTML = notifs.length ? notifs.map(n => `
+        <div onclick="readNotif('${n.id}')" style="padding:12px 20px;cursor:pointer;background:${n.read ? 'transparent' : 'rgba(200,222,206,.12)'};border-left:3px solid ${n.read ? 'transparent' : 'var(--sage)'};transition:all .2s"
+          onmouseover="this.style.background='rgba(200,222,206,.2)'" onmouseout="this.style.background='${n.read ? 'transparent' : 'rgba(200,222,206,.12)'}'">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px;margin-top:2px">${icons[n.type] || 'ℹ️'}</span>
+            <div style="flex:1">
+              <p style="font-size:13px;line-height:1.5;color:var(--text)">${n.message}</p>
+              <div style="font-size:11px;color:var(--muted);margin-top:4px">${new Date(n.ts).toLocaleDateString('en-PH', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</div>
+            </div>
+            ${!n.read ? '<span style="width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0;margin-top:5px"></span>' : ''}
+          </div>
+        </div>
+      `).join('') : '<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px">No notifications yet.</div>';
+    }
+
+    function readNotif(id) {
+      SPA.markNotificationRead(id);
+      renderNotifications();
+      const unread = SPA.getUnreadCount(user.id);
+      document.getElementById('notifDot').style.display = unread > 0 ? 'block' : 'none';
+    }
+
+    function markAllRead() {
+      SPA.markAllNotificationsRead(user.id);
+      renderNotifications();
+      document.getElementById('notifDot').style.display = 'none';
+    }
+
+    // Close notifications when clicking outside
+    document.addEventListener('click', function (e) {
+      const drawer = document.getElementById('notifDrawer');
+      const bell = document.getElementById('notifBell');
+      if (drawer.style.display === 'block' && !drawer.contains(e.target) && !bell.contains(e.target)) {
+        closeNotifications();
+      }
+    });
+
+    function saveProfile() {
+      const name = document.getElementById('pfName').value.trim() || user.name;
+      const phone = document.getElementById('pfPhone').value.trim();
+      const email = document.getElementById('pfEmail').value.trim() || user.email;
+      // Persist to both account record and client record
+      SPA.updateAccount(user.id, { name, phone, email });
+      SPA.updateClient(user.id, { name, phone, email });
+      user.name = name; user.phone = phone; user.email = email;
+      SPA.persistSession(user);
+      // Update UI
+      document.getElementById('profileName').textContent = name;
+      document.getElementById('profileEmail').textContent = email;
+      document.getElementById('sideName').textContent = name.split(' ')[0];
+      document.getElementById('sideAvatar').textContent = name[0].toUpperCase();
+      document.getElementById('profileAv').textContent = name[0].toUpperCase();
+      Design.toast('Profile updated and saved to database.');
+    }
+
+    // ─── ADVANCED AR TRY-ON (MediaPipe Face Mesh) ───
+    let arActive = false, arStream = null, arMode = 'eyebrow', arAnim = null;
+    let faceMesh = null, fmReady = false, lastLandmarks = null;
+    let nailColor = '#e91e8c', lipColor = '#d42857', eyebrowColor = '#3b2005';
+    let arIntensity = 0.7; // 0.0 - 1.0
+    let beforeAfterMode = false;
+    let facingMode = 'user';
+    let lastFrameTime = 0, fps = 0;
+
+    // Color presets per mode
+    const COLOR_PRESETS = {
+      eyebrow: [
+        { c: '#1a0a00', n: 'Ebony' }, { c: '#3b2005', n: 'Dark Brown' },
+        { c: '#6b3d1e', n: 'Brown' }, { c: '#8b5e3c', n: 'Medium' },
+        { c: '#c49a6c', n: 'Blonde' }, { c: '#9d4343', n: 'Auburn' },
+      ],
+      lips: [
+        { c: '#d42857', n: 'Rose Red' }, { c: '#c2185b', n: 'Deep Rose' },
+        { c: '#f06292', n: 'Blush Pink' }, { c: '#e91e8c', n: 'Hot Pink' },
+        { c: '#8d1c3e', n: 'Burgundy' }, { c: '#ff7043', n: 'Coral' },
+        { c: '#d84315', n: 'Orange Red' }, { c: '#b71c1c', n: 'Classic Red' },
+      ],
+      nails: [
+        { c: '#e91e8c', n: 'Hot Pink' }, { c: '#c2185b', n: 'Deep Rose' },
+        { c: '#f44336', n: 'Red' }, { c: '#ff7043', n: 'Coral' },
+        { c: '#9c27b0', n: 'Purple' }, { c: '#1a237e', n: 'Navy' },
+        { c: '#ff5722', n: 'Orange' }, { c: '#78909c', n: 'Mauve' },
+        { c: '#212121', n: 'Black' }, { c: '#f8bbd0', n: 'Nude' },
+      ],
+    };
+
+    // MediaPipe landmark indices (468-point face mesh)
+    const LM = {
+      // Left eyebrow: 70,63,105,66,107,55,65,52,53,46
+      leftBrow: [70, 63, 105, 66, 107, 55, 65, 52, 53, 46],
+      // Right eyebrow: 300,293,334,296,336,285,295,282,283,276
+      rightBrow: [300, 293, 334, 296, 336, 285, 295, 282, 283, 276],
+      // Left eye upper lash line
+      leftLash: [33, 7, 163, 144, 145, 153, 154, 155, 133, 173, 157, 158, 159, 160, 161, 246],
+      rightLash: [362, 382, 381, 380, 374, 373, 390, 249, 263, 466, 388, 387, 386, 385, 384, 398],
+      // Lips outer
+      lipsOuter: [61, 185, 40, 39, 37, 0, 267, 269, 270, 409, 291, 375, 321, 405, 314, 17, 84, 181, 91, 146],
+      lipsInner: [78, 191, 80, 81, 82, 13, 312, 311, 310, 415, 308, 324, 318, 402, 317, 14, 87, 178, 88, 95],
+      // Cheek blush areas
+      leftCheek: [116, 117, 118, 119, 120, 121, 206, 205, 50, 101, 36, 205],
+      rightCheek: [345, 346, 347, 348, 349, 350, 426, 425, 280, 330, 266, 425],
+      // Face oval
+      faceOval: [10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 162, 21, 54, 103, 67, 109],
+    };
+
+    function getMediaPipeURL() {
+      return 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js';
+    }
+
+    function selectAR(el, mode) {
+      document.querySelectorAll('.ar-svc-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      arMode = mode;
+      const labels = {
+        eyebrow: 'Eyebrow Shaping 👁️', lash: 'Eyelash Service ✨',
+        nails: 'Nail Color 💅', facial: 'Facial Glow 🌟',
+        blush: 'Blush Effect 🌸', lips: 'Lip Tint 💋',
+        contour: 'Contouring 🎨', glitter: 'Glitter Glow 🌟'
+      };
+      document.getElementById('arSelectedLabel').textContent = labels[mode] || mode;
+      const colorModes = ['eyebrow', 'nails', 'lips'];
+      document.getElementById('arColorRow').style.display = colorModes.includes(mode) ? 'flex' : 'none';
+      if (colorModes.includes(mode)) renderColorPresets(mode);
+      updateColorPicker();
+    }
+
+    function renderColorPresets(mode) {
+      const presets = COLOR_PRESETS[mode] || [];
+      const currentColor = mode === 'eyebrow' ? eyebrowColor : mode === 'lips' ? lipColor : nailColor;
+      document.getElementById('colorPresets').innerHTML = presets.map(p => `
+        <button onclick="setColorPreset('${p.c}')"
+          title="${p.n}"
+          style="width:22px;height:22px;border-radius:50%;background:${p.c};border:2px solid ${p.c === currentColor ? '#fff' : 'transparent'};cursor:pointer;outline:${p.c === currentColor ? '2px solid var(--sage)' : 'none'};outline-offset:1px;transition:all .15s">
+        </button>
+      `).join('');
+    }
+
+    function setColorPreset(color) {
+      if (arMode === 'eyebrow') eyebrowColor = color;
+      else if (arMode === 'nails') nailColor = color;
+      else if (arMode === 'lips') lipColor = color;
+      document.getElementById('arColorPicker').value = color;
+      renderColorPresets(arMode);
+    }
+
+    function updateColorPicker() {
+      const cp = document.getElementById('arColorPicker');
+      if (!cp) return;
+      if (arMode === 'eyebrow') cp.value = eyebrowColor;
+      else if (arMode === 'nails') cp.value = nailColor;
+      else if (arMode === 'lips') cp.value = lipColor;
+    }
+
+    function onColorChange(val) {
+      if (arMode === 'eyebrow') eyebrowColor = val;
+      else if (arMode === 'nails') nailColor = val;
+      else if (arMode === 'lips') lipColor = val;
+      renderColorPresets(arMode);
+    }
+
+    function onIntensityChange(val) {
+      arIntensity = val / 100;
+      document.getElementById('arIntensityVal').textContent = val + '%';
+    }
+
+    function toggleBeforeAfter() {
+      beforeAfterMode = !beforeAfterMode;
+      const btn = document.getElementById('beforeAfterBtn');
+      btn.style.background = beforeAfterMode ? 'rgba(143,196,154,.25)' : '';
+      btn.style.borderColor = beforeAfterMode ? 'var(--sage)' : '';
+      btn.style.color = beforeAfterMode ? 'var(--forest)' : '';
+    }
+
+    async function flipCamera() {
+      if (!arActive) return;
+      facingMode = facingMode === 'user' ? 'environment' : 'user';
+      if (arStream) arStream.getTracks().forEach(t => t.stop());
+      const video = document.getElementById('arVideo');
+      try {
+        arStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode, width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        video.srcObject = arStream;
+        await video.play();
+      } catch (e) { Design.toast('Could not flip camera.', 'error'); }
+    }
+
+    async function initFaceMesh() {
+      if (fmReady || typeof FaceMesh === 'undefined') return false;
+      return new Promise(resolve => {
+        faceMesh = new FaceMesh({
+          locateFile: file =>
+            `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/${file}`
+        });
+        faceMesh.setOptions({
+          maxNumFaces: 1,
+          refineLandmarks: true,
+          minDetectionConfidence: 0.6,
+          minTrackingConfidence: 0.6,
+        });
+        faceMesh.onResults(results => {
+          if (results.multiFaceLandmarks && results.multiFaceLandmarks.length > 0) {
+            lastLandmarks = results.multiFaceLandmarks[0];
+            document.getElementById('arFaceStatus').textContent = '✓ Face detected';
+            document.getElementById('arFaceStatus').style.color = '#16a34a';
+          } else {
+            lastLandmarks = null;
+            document.getElementById('arFaceStatus').textContent = '⊙ Searching for face…';
+            document.getElementById('arFaceStatus').style.color = '#d97706';
+          }
+        });
+        faceMesh.initialize().then(() => { fmReady = true; resolve(true); });
+      });
+    }
+
+    function lm(landmarks, idx, W, H) {
+      // Convert normalized landmark to canvas coords
+      const l = landmarks[idx];
+      return { x: l.x * W, y: l.y * H, z: l.z };
+    }
+
+    function lmPts(landmarks, indices, W, H) {
+      return indices.map(i => lm(landmarks, i, W, H));
+    }
+
+    async function toggleCamera() {
+      const btn = document.getElementById('arToggleBtn');
+      const video = document.getElementById('arVideo');
+      const canvas = document.getElementById('arCanvas');
+      const placeholder = document.getElementById('arPlaceholder');
+      const status = document.getElementById('arStatus');
+
+      if (arActive) {
+        if (arStream) arStream.getTracks().forEach(t => t.stop());
+        if (arAnim) cancelAnimationFrame(arAnim);
+        arActive = false;
+        video.style.display = canvas.style.display = 'none';
+        placeholder.style.display = 'flex';
+        btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg> Start Camera`;
+        btn.classList.remove('active');
+        lastLandmarks = null;
+        if (status) status.style.display = 'none';
+        document.getElementById('arFaceStatus').style.display = 'none';
+        document.getElementById('flipBtn').style.display = 'none';
+        beforeAfterMode = false;
+        return;
+      }
+
+      try {
+        if (status) {
+          status.style.display = 'flex';
+          status.textContent = '⟳ Loading AI face detection…';
+        }
+
+        arStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: facingMode, width: { ideal: 640 }, height: { ideal: 480 } }
+        });
+        video.srcObject = arStream;
+        await video.play();
+        video.style.display = 'block';
+        canvas.style.display = 'block';
+        placeholder.style.display = 'none';
+        arActive = true;
+        document.getElementById('arFaceStatus').style.display = 'block';
+        document.getElementById('flipBtn').style.display = 'flex';
+
+        btn.innerHTML = `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M8 8h8v8H8z"/></svg> Stop Camera`;
+        btn.classList.add('active');
+
+        // Try to load MediaPipe
+        if (!fmReady && typeof FaceMesh === 'undefined') {
+          await new Promise((res, rej) => {
+            const s = document.createElement('script');
+            s.src = getMediaPipeURL();
+            s.onload = res; s.onerror = rej;
+            document.head.appendChild(s);
+          }).catch(() => { });
+        }
+
+        const mpOK = await initFaceMesh();
+        if (status) {
+          status.textContent = mpOK ? '✓ AI Face Mesh active' : '⚠ Fallback mode (no face tracking)';
+          status.style.color = mpOK ? '#16a34a' : '#d97706';
+        }
+
+        drawAR(mpOK);
+      } catch (e) {
+        placeholder.innerHTML = `<div style="text-align:center;padding:20px">
+      <div style="font-size:40px;margin-bottom:12px">📷</div>
+      <p style="color:rgba(255,255,255,.5);font-size:13px">Camera access denied.<br>Allow camera in your browser settings.</p>
+    </div>`;
+        Design.toast('Camera access required.', 'error');
+        if (status) status.style.display = 'none';
+      }
+    }
+
+    async function takeSnapshot() {
+      const canvas = document.getElementById('arCanvas');
+      const video = document.getElementById('arVideo');
+      if (!arActive) return;
+      // Draw current frame to a temp canvas with video + overlay
+      const tmp = document.createElement('canvas');
+      tmp.width = canvas.width; tmp.height = canvas.height;
+      const tc = tmp.getContext('2d');
+      tc.drawImage(video, 0, 0, tmp.width, tmp.height);
+      tc.drawImage(canvas, 0, 0);
+      const link = document.createElement('a');
+      link.download = 'shortcut-spa-tryon.png';
+      link.href = tmp.toDataURL('image/png');
+      link.click();
+      Design.toast('📸 Snapshot saved!');
+    }
+
+    function drawAR(hasFaceMesh) {
+      const video = document.getElementById('arVideo');
+      const canvas = document.getElementById('arCanvas');
+      const ctx = canvas.getContext('2d');
+      let frameCount = 0;
+
+      async function frame(timestamp) {
+        if (!arActive) return;
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+        const W = canvas.width, H = canvas.height;
+        const cx = W / 2, cy = H / 2;
+        const t = Date.now() / 1000;
+        const pulse = Math.sin(t * 2.0) * 0.12 + 1;
+
+        // FPS counter
+        if (timestamp && lastFrameTime) {
+          fps = Math.round(1000 / (timestamp - lastFrameTime));
+          if (frameCount % 30 === 0) {
+            const fpsel = document.getElementById('arFpsDisplay');
+            if (fpsel) fpsel.textContent = fps + ' fps';
+          }
+        }
+        lastFrameTime = timestamp;
+
+        ctx.clearRect(0, 0, W, H);
+
+        // Before/After split
+        if (beforeAfterMode) {
+          const splitX = W / 2;
+          // Left side: clean (label)
+          ctx.save();
+          ctx.fillStyle = 'rgba(0,0,0,0.45)';
+          ctx.fillRect(0, 0, splitX, 24);
+          ctx.font = '600 11px Jost, sans-serif';
+          ctx.fillStyle = 'rgba(255,255,255,0.8)';
+          ctx.textAlign = 'center';
+          ctx.fillText('BEFORE', splitX / 2, 16);
+          ctx.fillText('AFTER', splitX + splitX / 2, 16);
+          ctx.restore();
+          // Divider line
+          ctx.save();
+          ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+          ctx.lineWidth = 2;
+          ctx.setLineDash([6, 4]);
+          ctx.beginPath(); ctx.moveTo(splitX, 0); ctx.lineTo(splitX, H);
+          ctx.stroke();
+          ctx.restore();
+          // Only draw effect on right half
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(splitX, 0, W - splitX, H);
+          ctx.clip();
+        }
+
+        // Send frame to MediaPipe every 2 frames
+        if (hasFaceMesh && fmReady && faceMesh && frameCount % 2 === 0) {
+          try { await faceMesh.send({ image: video }); } catch (e) { }
+        }
+        frameCount++;
+
+        const lms = lastLandmarks;
+
+        if (lms) {
+          drawARWithLandmarks(ctx, lms, W, H, t, pulse);
+        } else {
+          drawARFallback(ctx, W, H, cx, cy, t, pulse);
+        }
+
+        if (beforeAfterMode) ctx.restore();
+
+        arAnim = requestAnimationFrame(frame);
+      }
+      frame();
+    }
+
+    function drawARWithLandmarks(ctx, lms, W, H, t, pulse) {
+      ctx.save();
+      ctx.globalAlpha = arIntensity;
+      ctx.globalCompositeOperation = 'source-over';
+
+      if (arMode === 'eyebrow') {
+        drawEyebrowsLandmark(ctx, lms, W, H);
+      } else if (arMode === 'lash') {
+        drawLashesLandmark(ctx, lms, W, H);
+      } else if (arMode === 'lips') {
+        drawLipsLandmark(ctx, lms, W, H, pulse);
+      } else if (arMode === 'blush') {
+        drawBlushLandmark(ctx, lms, W, H, pulse);
+      } else if (arMode === 'facial') {
+        drawFacialGlowLandmark(ctx, lms, W, H, pulse);
+      } else if (arMode === 'nails') {
+        drawNailsFallback(ctx, W, H, W / 2, H / 2, pulse);
+      } else if (arMode === 'contour') {
+        drawContourLandmark(ctx, lms, W, H, pulse);
+      } else if (arMode === 'glitter') {
+        drawGlitterLandmark(ctx, lms, W, H, t, pulse);
+      }
+
+      ctx.restore();
+    }
+
+    function drawEyebrowsLandmark(ctx, lms, W, H) {
+      const leftPts = lmPts(lms, LM.leftBrow, W, H);
+      const rightPts = lmPts(lms, LM.rightBrow, W, H);
+
+      // Calculate brow thickness based on face scale
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const thick = Math.max(faceW * 0.025, 3);
+
+      // Parse color
+      const col = hexToRgb(eyebrowColor);
+
+      [leftPts, rightPts].forEach(pts => {
+        // Draw filled brow shape using convex hull approximation
+        ctx.beginPath();
+        // Upper edge
+        ctx.moveTo(pts[0].x, pts[0].y - thick * 0.5);
+        pts.forEach(p => ctx.lineTo(p.x, p.y - thick * 0.5));
+        // Lower edge (reversed)
+        for (let i = pts.length - 1; i >= 0; i--)
+          ctx.lineTo(pts[i].x, pts[i].y + thick * 0.5);
+        ctx.closePath();
+
+        const grd = ctx.createLinearGradient(pts[0].x, 0, pts[pts.length - 1].x, 0);
+        grd.addColorStop(0, `rgba(${col.r},${col.g},${col.b},0.55)`);
+        grd.addColorStop(0.5, `rgba(${col.r},${col.g},${col.b},0.9)`);
+        grd.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0.55)`);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Hair strokes for realism
+        ctx.strokeStyle = `rgba(${col.r},${col.g},${col.b},0.35)`;
+        ctx.lineWidth = 0.8;
+        pts.forEach((p, i) => {
+          if (i % 2 === 0) {
+            ctx.beginPath();
+            ctx.moveTo(p.x + (Math.random() - 0.5) * 4, p.y - thick * 0.7);
+            ctx.lineTo(p.x + (Math.random() - 0.5) * 2, p.y + thick * 0.5);
+            ctx.stroke();
+          }
+        });
+      });
+    }
+
+    function drawLashesLandmark(ctx, lms, W, H) {
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const lashLen = faceW * 0.04;
+      const lashW = Math.max(faceW * 0.004, 1.2);
+
+      [[LM.leftLash, false], [LM.rightLash, true]].forEach(([indices, isRight]) => {
+        const pts = lmPts(lms, indices, W, H);
+        // Upper lash line
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        pts.forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.strokeStyle = 'rgba(10,5,5,0.9)';
+        ctx.lineWidth = lashW * 2.5;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        // Individual lash hairs
+        const count = 18;
+        for (let i = 0; i < count; i++) {
+          const idx = Math.floor(i / count * (pts.length - 1));
+          const p = pts[idx] || pts[pts.length - 1];
+          const prog = i / (count - 1);
+          const angle = (isRight ? 1 : -1) * (0.3 - prog * 0.6) - Math.PI / 2;
+          const curl = Math.sin(prog * Math.PI) * 0.3;
+          const len = lashLen * (0.7 + Math.sin(prog * Math.PI) * 0.5);
+
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          const cp1x = p.x + Math.cos(angle) * len * 0.5;
+          const cp1y = p.y + Math.sin(angle) * len * 0.5 - curl * len;
+          const ex = p.x + Math.cos(angle) * len;
+          const ey = p.y + Math.sin(angle) * len - curl * len * 1.2;
+          ctx.quadraticCurveTo(cp1x, cp1y, ex, ey);
+          ctx.strokeStyle = 'rgba(10,5,5,0.85)';
+          ctx.lineWidth = lashW * (0.8 + Math.sin(prog * Math.PI) * 0.4);
+          ctx.stroke();
+        }
+      });
+    }
+
+    function drawLipsLandmark(ctx, lms, W, H, pulse) {
+      const outerPts = lmPts(lms, LM.lipsOuter, W, H);
+      const innerPts = lmPts(lms, LM.lipsInner, W, H);
+      const col = hexToRgb(lipColor);
+      const alpha = 0.55;
+
+      function drawLipShape(pts, alpha2) {
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++) {
+          const prev = pts[i - 1], curr = pts[i], next = pts[(i + 1) % pts.length];
+          const cx1 = (prev.x + curr.x) / 2, cy1 = (prev.y + curr.y) / 2;
+          const cx2 = (curr.x + next.x) / 2, cy2 = (curr.y + next.y) / 2;
+          ctx.quadraticCurveTo(curr.x, curr.y, cx2, cy2);
+        }
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${alpha2})`;
+        ctx.fill();
+      }
+
+      // Base lip color
+      ctx.save();
+      ctx.globalCompositeOperation = 'multiply';
+      drawLipShape(outerPts, alpha * pulse);
+      ctx.restore();
+
+      // Highlight on upper lip cupid's bow
+      ctx.save();
+      ctx.globalCompositeOperation = 'source-over';
+      const lipCenterX = outerPts.reduce((s, p) => s + p.x, 0) / outerPts.length;
+      const lipTopY = Math.min(...outerPts.map(p => p.y));
+      const lipW = Math.max(...outerPts.map(p => p.x)) - Math.min(...outerPts.map(p => p.x));
+      const grd = ctx.createRadialGradient(lipCenterX, lipTopY, 0, lipCenterX, lipTopY + lipW * 0.1, lipW * 0.25);
+      grd.addColorStop(0, 'rgba(255,255,255,0.25)');
+      grd.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      outerPts.forEach((p, i) => i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y));
+      ctx.closePath();
+      ctx.fill();
+
+      // Gloss sheen
+      const gloss = ctx.createLinearGradient(0, lipTopY, 0, lipTopY + lipW * 0.3);
+      gloss.addColorStop(0, 'rgba(255,255,255,0.18)');
+      gloss.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gloss;
+      drawLipShape(outerPts, 1);
+      ctx.restore();
+    }
+
+    function drawBlushLandmark(ctx, lms, W, H, pulse) {
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const radius = faceW * 0.13;
+
+      // Left cheek blush center — landmark 205
+      const lcx = lm(lms, 205, W, H);
+      const rcx = lm(lms, 425, W, H);
+
+      [[lcx, -0.15], [rcx, 0.15]].forEach(([center, tilt]) => {
+        const grd = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, radius);
+        grd.addColorStop(0, `rgba(240,100,120,${0.32 * pulse})`);
+        grd.addColorStop(0.5, `rgba(255,140,150,${0.15 * pulse})`);
+        grd.addColorStop(1, 'rgba(255,180,180,0)');
+        ctx.save();
+        ctx.translate(center.x, center.y);
+        ctx.rotate(tilt);
+        ctx.scale(1.4, 0.7);
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+        ctx.restore();
+      });
+    }
+
+    function drawFacialGlowLandmark(ctx, lms, W, H, pulse) {
+      const faceCenter = lm(lms, 1, W, H); // nose tip
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const faceH = Math.abs(lm(lms, 10, W, H).y - lm(lms, 152, W, H).y);
+
+      // Glow based on face oval landmarks
+      const ovalPts = lmPts(lms, LM.faceOval, W, H);
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+
+      // Multi-layer glow effect
+      const layers = [
+        { r: faceW * 0.52, a: 0.07 * pulse, color: '255,225,170' },
+        { r: faceW * 0.38, a: 0.10 * pulse, color: '255,210,150' },
+        { r: faceW * 0.22, a: 0.08 * pulse, color: '255,200,130' },
+      ];
+      layers.forEach(({ r, a, color }) => {
+        const grd = ctx.createRadialGradient(faceCenter.x, faceCenter.y, 0, faceCenter.x, faceCenter.y, r);
+        grd.addColorStop(0, `rgba(${color},${a})`);
+        grd.addColorStop(0.6, `rgba(${color},${a * 0.4})`);
+        grd.addColorStop(1, `rgba(${color},0)`);
+        ctx.fillStyle = grd;
+
+        // Draw ellipse matching face shape
+        ctx.beginPath();
+        ctx.ellipse(faceCenter.x, faceCenter.y, r, r * (faceH / faceW), 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Sparkle dots on face oval
+      const sparkCount = 8;
+      const sparkPts = ovalPts.filter((_, i) => i % Math.floor(ovalPts.length / sparkCount) === 0);
+      sparkPts.forEach((p, i) => {
+        const sparkPulse = Math.sin(Date.now() / 500 + i * 0.8) * 0.5 + 0.5;
+        ctx.save();
+        ctx.globalAlpha = 0.4 * sparkPulse;
+        ctx.fillStyle = '#fff8e1';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
+
+      ctx.restore();
+    }
+
+    // ── FALLBACK (no face mesh) ─────────────────────────────────
+    function drawARFallback(ctx, W, H, cx, cy, t, pulse) {
+      ctx.save();
+      ctx.globalAlpha = arIntensity;
+      if (arMode === 'eyebrow') {
+        const col = hexToRgb(eyebrowColor);
+        ctx.save();
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        const ey = H * 0.36;
+        const thick = H * 0.018;
+        [[cx - 0.2 * W, cx - 0.06 * W, true], [cx + 0.06 * W, cx + 0.2 * W, false]].forEach(([x1, x2, isLeft]) => {
+          ctx.beginPath();
+          ctx.moveTo(x1, ey + thick);
+          ctx.bezierCurveTo(x1 + 0.04 * W, ey - thick, x2 - 0.04 * W, ey - thick * 1.5, x2, ey);
+          ctx.bezierCurveTo(x2 - 0.04 * W, ey - thick * 0.5, x1 + 0.04 * W, ey, x1, ey + thick);
+          ctx.closePath();
+          const grd = ctx.createLinearGradient(x1, 0, x2, 0);
+          grd.addColorStop(0, `rgba(${col.r},${col.g},${col.b},0.5)`);
+          grd.addColorStop(0.5, `rgba(${col.r},${col.g},${col.b},0.85)`);
+          grd.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0.5)`);
+          ctx.fillStyle = grd; ctx.fill();
+        });
+        ctx.restore();
+      } else if (arMode === 'lash') {
+        ctx.save();
+        const ey = H * 0.42;
+        const lashLen = H * 0.04;
+        const count = 16;
+        [[cx - 0.2 * W, 0.16 * W, false], [cx + 0.04 * W, 0.16 * W, true]].forEach(([startX, span, isRight]) => {
+          for (let i = 0; i < count; i++) {
+            const prog = i / (count - 1);
+            const px = startX + prog * span;
+            const baseAngle = (isRight ? 1 : -1) * (0.25 - prog * 0.5) - Math.PI / 2;
+            const curl = Math.sin(prog * Math.PI) * 0.3;
+            const len = lashLen * (0.7 + Math.sin(prog * Math.PI) * 0.5);
+            ctx.beginPath();
+            ctx.moveTo(px, ey);
+            ctx.quadraticCurveTo(
+              px + Math.cos(baseAngle) * len * 0.5, ey + Math.sin(baseAngle) * len * 0.5 - curl * len,
+              px + Math.cos(baseAngle) * len, ey + Math.sin(baseAngle) * len - curl * len * 1.2
+            );
+            ctx.strokeStyle = 'rgba(10,5,5,0.85)';
+            ctx.lineWidth = 1.5 + Math.sin(prog * Math.PI) * 0.5;
+            ctx.lineCap = 'round'; ctx.stroke();
+          }
+        });
+        ctx.restore();
+      } else if (arMode === 'nails') {
+        drawNailsFallback(ctx, W, H, cx, cy, pulse);
+      } else if (arMode === 'facial') {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        const grd = ctx.createRadialGradient(cx, cy * 0.9, W * 0.05, cx, cy * 0.9, W * 0.38);
+        grd.addColorStop(0, `rgba(255,225,170,${0.12 * pulse})`);
+        grd.addColorStop(0.5, `rgba(255,210,140,${0.06 * pulse})`);
+        grd.addColorStop(1, 'rgba(255,180,100,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath(); ctx.ellipse(cx, cy * 0.9, W * 0.34, H * 0.42, 0, 0, 2 * Math.PI); ctx.fill();
+        ctx.restore();
+      } else if (arMode === 'blush') {
+        ctx.save();
+        [[cx - 0.2 * W, -0.18], [cx + 0.2 * W, 0.18]].forEach(([bx, tilt]) => {
+          const grd = ctx.createRadialGradient(bx, cy * 1.02, 0, bx, cy * 1.02, W * 0.11);
+          grd.addColorStop(0, `rgba(240,100,120,${0.28 * pulse})`);
+          grd.addColorStop(1, 'transparent');
+          ctx.save(); ctx.translate(bx, cy * 1.02); ctx.rotate(tilt);
+          ctx.scale(1.4, 0.7); ctx.beginPath(); ctx.arc(0, 0, W * 0.11, 0, 2 * Math.PI);
+          ctx.fillStyle = grd; ctx.fill(); ctx.restore();
+        });
+        ctx.restore();
+      } else if (arMode === 'contour') {
+        ctx.save();
+        ctx.globalCompositeOperation = 'multiply';
+        [[cx - 0.2 * W, 0.14 * W, 0.4 * H], [cx + 0.2 * W, 0.14 * W, 0.4 * H]].forEach(([sx, rw, sy]) => {
+          const grd = ctx.createRadialGradient(sx, sy, 0, sx, sy, rw);
+          grd.addColorStop(0, `rgba(140,90,60,${0.25 * pulse})`);
+          grd.addColorStop(1, 'rgba(140,90,60,0)');
+          ctx.fillStyle = grd;
+          ctx.beginPath(); ctx.ellipse(sx, sy, rw * 0.7, rw * 1.6, 0, 0, Math.PI * 2); ctx.fill();
+        });
+        // Forehead highlight
+        ctx.globalCompositeOperation = 'screen';
+        const fhGrd = ctx.createRadialGradient(cx, H * 0.25, 0, cx, H * 0.25, W * 0.2);
+        fhGrd.addColorStop(0, `rgba(255,235,200,${0.18 * pulse})`);
+        fhGrd.addColorStop(1, 'rgba(255,235,200,0)');
+        ctx.fillStyle = fhGrd; ctx.beginPath(); ctx.ellipse(cx, H * 0.25, W * 0.2, H * 0.08, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      } else if (arMode === 'glitter') {
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        [[cx - 0.2 * W, cy * 0.9], [cx + 0.2 * W, cy * 0.9], [cx, cy * 0.7]].forEach(([gx, gy]) => {
+          const grd = ctx.createRadialGradient(gx, gy, 0, gx, gy, W * 0.18);
+          grd.addColorStop(0, `rgba(255,215,0,${0.18 * pulse})`);
+          grd.addColorStop(1, 'rgba(255,215,0,0)');
+          ctx.fillStyle = grd; ctx.beginPath(); ctx.arc(gx, gy, W * 0.18, 0, Math.PI * 2); ctx.fill();
+        });
+        // Sparkles
+        for (let i = 0; i < 16; i++) {
+          const px = cx + Math.sin(Date.now() / 1000 + i * 0.7) * W * 0.25;
+          const py = cy * 0.9 + Math.cos(Date.now() / 900 + i * 0.5) * H * 0.2;
+          ctx.fillStyle = `rgba(255,255,200,${0.5 * pulse})`;
+          ctx.beginPath(); ctx.arc(px, py, 2 + Math.sin(Date.now() / 300 + i) * 1.5, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+      } else if (arMode === 'lips') {
+        const col = hexToRgb(lipColor);
+        ctx.save();
+        ctx.globalCompositeOperation = 'multiply';
+        const ly = H * 0.64, lw = W * 0.1;
+        // Upper lip
+        ctx.beginPath(); ctx.moveTo(cx - lw, ly);
+        ctx.bezierCurveTo(cx - lw * 0.6, ly - H * 0.04, cx - lw * 0.1, ly - H * 0.05, cx, ly - H * 0.02);
+        ctx.bezierCurveTo(cx + lw * 0.1, ly - H * 0.05, cx + lw * 0.6, ly - H * 0.04, cx + lw, ly);
+        ctx.bezierCurveTo(cx + lw * 0.6, ly - H * 0.01, cx - lw * 0.6, ly - H * 0.01, cx - lw, ly);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${0.5 * pulse})`; ctx.fill();
+        // Lower lip
+        ctx.beginPath(); ctx.moveTo(cx - lw, ly);
+        ctx.bezierCurveTo(cx - lw * 0.6, ly + H * 0.04, cx + lw * 0.6, ly + H * 0.04, cx + lw, ly);
+        ctx.bezierCurveTo(cx + lw * 0.6, ly + H * 0.015, cx - lw * 0.6, ly + H * 0.015, cx - lw, ly);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(${col.r},${col.g},${col.b},${0.55 * pulse})`; ctx.fill();
+        ctx.restore();
+        // Gloss
+        ctx.save();
+        const gloss = ctx.createLinearGradient(0, ly - H * 0.06, 0, ly + H * 0.04);
+        gloss.addColorStop(0, 'rgba(255,255,255,0.2)'); gloss.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = gloss;
+        ctx.beginPath(); ctx.ellipse(cx, ly, lw * 0.8, H * 0.025, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+      ctx.restore(); // for globalAlpha
+    }
+
+    function drawNailsFallback(ctx, W, H, cx, cy, pulse) {
+      const col = hexToRgb(nailColor);
+      const ny = H * 0.73, sp = W * 0.07;
+      ctx.save();
+      for (let i = 0; i < 5; i++) {
+        const nx = cx - 2 * sp + i * sp;
+        const nw = 13 * (W / 640), nh = 17 * (H / 480);
+        // Nail base
+        const grd = ctx.createRadialGradient(nx, ny - nh * 0.2, 0, nx, ny, nw * 1.2);
+        grd.addColorStop(0, `rgba(${col.r},${col.g},${col.b},0.95)`);
+        grd.addColorStop(1, `rgba(${Math.max(col.r - 30, 0)},${Math.max(col.g - 30, 0)},${Math.max(col.b - 30, 0)},0.9)`);
+        ctx.fillStyle = grd;
+        ctx.beginPath(); ctx.ellipse(nx, ny, nw, nh, 0, 0, 2 * Math.PI); ctx.fill();
+        // Highlight
+        ctx.fillStyle = 'rgba(255,255,255,0.35)';
+        ctx.beginPath(); ctx.ellipse(nx - nw * 0.25, ny - nh * 0.3, nw * 0.35, nh * 0.3, -0.3, 0, 2 * Math.PI); ctx.fill();
+        // Glitter effect
+        for (let g = 0; g < 3; g++) {
+          const gx = nx + (Math.sin(Date.now() / 500 + i * 1.5 + g) * nw * 0.5);
+          const gy = ny + (Math.cos(Date.now() / 400 + i + g * 2) * nh * 0.3);
+          ctx.fillStyle = `rgba(255,255,255,${0.4 * pulse})`;
+          ctx.beginPath(); ctx.arc(gx, gy, 1.5, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      ctx.restore();
+    }
+
+    // ── CONTOUR ──────────────────────────────────────────────────
+    function drawContourLandmark(ctx, lms, W, H, pulse) {
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const cheekboneL = lm(lms, 116, W, H);
+      const cheekboneR = lm(lms, 345, W, H);
+      const jawL = lm(lms, 172, W, H);
+      const jawR = lm(lms, 397, W, H);
+      const foreheadL = lm(lms, 21, W, H);
+      const foreheadR = lm(lms, 251, W, H);
+      const nose_tip = lm(lms, 4, W, H);
+      const noseSide_L = lm(lms, 218, W, H);
+      const noseSide_R = lm(lms, 438, W, H);
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'multiply';
+
+      // Jaw / chin shadow
+      [[cheekboneL, jawL, -0.2], [cheekboneR, jawR, 0.2]].forEach(([top, bot, tilt]) => {
+        const grd = ctx.createLinearGradient(top.x, top.y, bot.x, bot.y);
+        grd.addColorStop(0, `rgba(140,90,60,${0.25 * pulse})`);
+        grd.addColorStop(1, `rgba(140,90,60,0)`);
+        ctx.save();
+        ctx.translate((top.x + bot.x) / 2, (top.y + bot.y) / 2);
+        ctx.rotate(tilt);
+        ctx.scale(1, 1);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, faceW * 0.11, faceW * 0.22, 0, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+        ctx.restore();
+      });
+
+      // Nose bridge shadow
+      [noseSide_L, noseSide_R].forEach(pt => {
+        const grd = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, faceW * 0.04);
+        grd.addColorStop(0, `rgba(130,85,55,${0.2 * pulse})`);
+        grd.addColorStop(1, 'rgba(130,85,55,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath(); ctx.ellipse(pt.x, pt.y, faceW * 0.025, faceW * 0.04, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Forehead highlight
+      const fhX = (foreheadL.x + foreheadR.x) / 2;
+      const fhY = Math.min(foreheadL.y, foreheadR.y);
+      const hiGrd = ctx.createRadialGradient(fhX, fhY, 0, fhX, fhY, faceW * 0.2);
+      hiGrd.addColorStop(0, `rgba(255,235,200,${0.18 * pulse})`);
+      hiGrd.addColorStop(1, 'rgba(255,235,200,0)');
+      ctx.globalCompositeOperation = 'screen';
+      ctx.fillStyle = hiGrd;
+      ctx.beginPath(); ctx.ellipse(fhX, fhY, faceW * 0.2, faceW * 0.1, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // ── GLITTER GLOW ─────────────────────────────────────────────
+    function drawGlitterLandmark(ctx, lms, W, H, t, pulse) {
+      const faceW = Math.abs(lm(lms, 454, W, H).x - lm(lms, 234, W, H).x);
+      const nose = lm(lms, 1, W, H);
+      const lcheek = lm(lms, 205, W, H);
+      const rcheek = lm(lms, 425, W, H);
+      const forehead = lm(lms, 10, W, H);
+
+      ctx.save();
+      ctx.globalCompositeOperation = 'screen';
+
+      // Base shimmer glow
+      const centers = [
+        { pt: lcheek, r: faceW * 0.14, colors: ['255,215,0', '255,182,193'] },
+        { pt: rcheek, r: faceW * 0.14, colors: ['255,215,0', '255,182,193'] },
+        { pt: forehead, r: faceW * 0.12, colors: ['200,220,255', '255,215,200'] },
+        { pt: nose, r: faceW * 0.08, colors: ['255,255,200', '255,220,150'] },
+      ];
+      centers.forEach(({ pt, r, colors }) => {
+        const grd = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, r);
+        grd.addColorStop(0, `rgba(${colors[0]},${0.18 * pulse * arIntensity})`);
+        grd.addColorStop(0.5, `rgba(${colors[1]},${0.08 * pulse})`);
+        grd.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = grd;
+        ctx.beginPath(); ctx.ellipse(pt.x, pt.y, r, r * 0.7, 0, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Floating sparkle particles
+      const ovalPts = lmPts(lms, LM.faceOval, W, H);
+      const sparkCount = 24;
+      for (let i = 0; i < sparkCount; i++) {
+        const idx = Math.floor((i / sparkCount) * ovalPts.length);
+        const basePt = ovalPts[idx];
+        const offsetX = Math.sin(t * 1.3 + i * 0.7) * faceW * 0.06;
+        const offsetY = Math.cos(t * 1.1 + i * 0.5) * faceW * 0.06;
+        const px = basePt.x + offsetX;
+        const py = basePt.y + offsetY;
+        const sparkAnim = Math.abs(Math.sin(t * 3 + i * 1.2));
+        const size = (1.5 + sparkAnim * 2.5) * (faceW / 250);
+
+        ctx.save();
+        ctx.globalAlpha = sparkAnim * 0.8;
+        // Star shape
+        ctx.translate(px, py);
+        ctx.rotate(t * 0.5 + i);
+        ctx.fillStyle = `hsl(${(t * 60 + i * 30) % 360},80%,75%)`;
+        ctx.beginPath();
+        for (let s = 0; s < 4; s++) {
+          const a = (s / 4) * Math.PI * 2;
+          ctx.moveTo(0, 0);
+          ctx.lineTo(Math.cos(a) * size, Math.sin(a) * size);
+          ctx.lineTo(Math.cos(a + 0.3) * size * 0.3, Math.sin(a + 0.3) * size * 0.3);
+        }
+        ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+
+    // ── UTILS ────────────────────────────────────────────────────
+    function hexToRgb(hex) {
+      const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+      return { r, g, b };
+    }
+
+    // ─── UTILS ───
+    function fmtTime(t) {
+      const [h, m] = (t || '00:00').split(':');
+      const hr = parseInt(h);
+      return `${hr > 12 ? hr - 12 : (hr === 0 ? 12 : hr)}:${m || '00'} ${hr >= 12 ? 'PM' : 'AM'}`;
+    }
+
+    function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+    // ─── INIT ───
+    renderHome();
+    // Initialize star rating
+    setRating(5);
+  </script>
+</body>
+
+</html>

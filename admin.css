@@ -1,0 +1,109 @@
+/* ============================================================
+   SHORTCUT'S SKIN CARE SPA — ADMIN DASHBOARD CSS v2.0
+   ============================================================ */
+
+@import url('base.css');
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: var(--cream);
+}
+
+/* ─── STATS GRID ─── */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* ─── DASHBOARD GRID ─── */
+.dash-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+}
+
+/* ─── CLIENTS GRID ─── */
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+/* ─── INCOME PAGE ─── */
+.income-page-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ─── TOPBAR ─── */
+.topbar {
+    border-bottom: 1px solid rgba(200, 222, 206, .3);
+}
+
+.topbar-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ─── APPT ACTIONS ─── */
+.appt-actions {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+/* ─── SIDEBAR USER CARD ─── */
+.sidebar-footer .user-card {
+    cursor: default;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1280px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .dash-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .clients-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .clients-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+}
